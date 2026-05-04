@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Saat dipilih -->
+    <item android:state_checked="true">
+        <shape android:shape="oval">
+            <solid android:color="#E0F7FA"/>
+            <size android:width="20dp" android:height="20dp"/>
+        </shape>
+    </item>
+
+    <!-- Default (transparan) -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="@android:color/transparent"/>
+            <size android:width="48dp" android:height="48dp"/>
+        </shape>
+    </item>
+
+</selector>
