@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Style: Modern Soft UI -->
+    <color name="green_primary">#2E7D32</color> <!-- Hijau sesuai spek -->
+    <color name="blue_primary">#2196F3</color>  <!-- Biru sesuai spek -->
+    <color name="bg_neutral">#F5F5F5</color>    <!-- Background netral -->
+    
+    <color name="text_dark">#212121</color>
+    <color name="text_light">#757575</color>
+
+    <!-- Aliases for layouts -->
+    <color name="green_button">#2E7D32</color>
+    <color name="gray_text">#757575</color>
+    <color name="bg_light">#F5F5F5</color>
+    
+    <!-- Navigasi & UI Modern -->
+    <color name="nav_highlight">#E3F2FD</color>
+    <color name="green_primary_transparent">#262E7D32</color> <!-- 15% opacity Green -->
+    <color name="nav_inactive">#9E9E9E</color>
+
+    <!-- Weather UI Colors -->
+    <color name="weather_bg">#4A90E2</color>
+    <color name="transparent_white">#33FFFFFF</color>
+    <color name="transparent_white_heavy">#66FFFFFF</color>
+</resources>
