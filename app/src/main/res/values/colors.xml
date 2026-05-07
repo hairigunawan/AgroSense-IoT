@@ -21,8 +21,20 @@
     <color name="green_primary_transparent">#262E7D32</color> <!-- 15% opacity Green -->
     <color name="nav_inactive">#9E9E9E</color>
 
-    <!-- Weather UI Colors -->
+    <!-- Weather UI Colors (Legacy) -->
     <color name="weather_bg">#4A90E2</color>
     <color name="transparent_white">#33FFFFFF</color>
     <color name="transparent_white_heavy">#66FFFFFF</color>
+
+    <!-- Weather Modern UI Colors -->
+    <color name="weather_bg_start">#0B1B32</color>
+    <color name="weather_bg_end">#1E3C72</color>
+    <color name="weather_bg_day_start">#11998E</color>
+    <color name="weather_bg_day_end">#38EF7D</color>
+    <color name="glass_white">#1AFFFFFF</color>
+    <color name="glass_white_heavy">#33FFFFFF</color>
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#B3FFFFFF</color>
+    <color name="accent_blue">#00D2FF</color>
+    <color name="indicator_white">#FFFFFF</color>
 </resources>

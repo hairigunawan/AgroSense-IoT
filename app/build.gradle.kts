@@ -57,6 +57,7 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.firestore)
+    implementation("com.google.firebase:firebase-storage")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
@@ -69,7 +70,8 @@ dependencies {
     // Glide
     implementation(libs.glide)
 
-    // Location
+    // SSO & Location
+    implementation(libs.playServicesAuth)
     implementation(libs.play.services.location)
 
     implementation("com.google.firebase:firebase-database-ktx:20.3.0")

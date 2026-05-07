@@ -92,6 +92,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/tvOnlineStatus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/bg_chip_green"
@@ -245,15 +246,17 @@
                         android:orientation="horizontal">
 
                         <View
+                            android:id="@+id/viewStatusDot"
                             android:layout_width="8dp"
                             android:layout_height="8dp"
                             android:background="@drawable/dot_green" />
 
                         <TextView
+                            android:id="@+id/tvStatusPenyiraman"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
-                            android:text="Melakukan penyiraman"
+                            android:text="Memuat status..."
                             android:textColor="@color/text_light"
                             android:textSize="13sp" />
                     </LinearLayout>
@@ -261,7 +264,7 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- 4. CARD: CUACA (Navigasi ke WeatherActivity) -->
+        <!-- 4. CARD: CUACA (Navigasi ke WeatherActivityModern) -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardWeather"
             android:layout_width="match_parent"

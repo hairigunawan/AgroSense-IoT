@@ -36,6 +36,14 @@ class WelcomeActivity : AppCompatActivity() {
         FirebaseApp.initializeApp(this)
         auth = FirebaseAuth.getInstance()
 
+        // Auto Login: Jika user sudah login dan email terverifikasi, langsung ke MainActivity
+        val currentUser = auth.currentUser
+        if (currentUser != null && currentUser.isEmailVerified) {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+            return
+        }
+
         // Ambil View dari Layout
         val btnDaftar = findViewById<Button>(R.id.btn_daftar_welcome)
         val tvGoToLogin = findViewById<TextView>(R.id.tv_go_to_login)

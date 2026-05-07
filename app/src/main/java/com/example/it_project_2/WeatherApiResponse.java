@@ -36,10 +36,14 @@ public class WeatherApiResponse {
         @SerializedName("condition")
         private Condition condition;
 
+        @SerializedName("is_day")
+        private int isDay;
+
         public double getTempC() { return tempC; }
         public double getFeelsLikeC() { return feelsLikeC; }
         public String getLastUpdated() { return lastUpdated; }
         public Condition getCondition() { return condition; }
+        public int getIsDay() { return isDay; }
     }
 
     public static class Condition {
@@ -93,5 +97,9 @@ public class WeatherApiResponse {
         }
         public double getTempC() { return tempC; }
         public Condition getCondition() { return condition; }
+
+        @SerializedName("chance_of_rain")
+        private int chanceOfRain;
+        public int getChanceOfRain() { return chanceOfRain; }
     }
 }

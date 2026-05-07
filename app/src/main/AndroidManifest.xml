@@ -39,7 +39,7 @@
             android:exported="false" />
 
         <activity
-            android:name=".WeatherActivity"
+            android:name=".WeatherActivityModern"
             android:exported="true" />
 
     </application>

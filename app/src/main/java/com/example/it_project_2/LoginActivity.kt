@@ -11,11 +11,17 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.auth
 import com.google.firebase.Firebase
 import java.util.concurrent.Executor
@@ -26,6 +32,20 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var executor: Executor
     private lateinit var biometricPrompt: BiometricPrompt
     private lateinit var promptInfo: BiometricPrompt.PromptInfo
+    private lateinit var googleSignInClient: GoogleSignInClient
+
+    private val googleSignInLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == RESULT_OK) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+            try {
+                val account = task.getResult(ApiException::class.java)!!
+                firebaseAuthWithGoogle(account.idToken!!)
+            } catch (e: ApiException) {
+                Log.w(TAG, "Google sign in failed", e)
+                Toast.makeText(this, "Login Google gagal: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,13 +53,35 @@ class LoginActivity : AppCompatActivity() {
 
         auth = Firebase.auth
 
+        // Jika user sudah login dan terverifikasi, langsung ke MainActivity
+        if (auth.currentUser != null && auth.currentUser!!.isEmailVerified) {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+            return
+        }
+
+        // Configure Google Sign In
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+        googleSignInClient = GoogleSignIn.getClient(this, gso)
+
         val etEmail = findViewById<EditText>(R.id.et_email_login)
         val etPassword = findViewById<EditText>(R.id.et_password_login)
         val btnLogin = findViewById<Button>(R.id.btn_login)
         val btnBiometric = findViewById<ImageButton>(R.id.btn_biometric)
+        val btnGoogle = findViewById<Button>(R.id.btn_google_login)
         val tvRegister = findViewById<TextView>(R.id.tv_go_to_register)
 
-        // Set Spannable text for tvRegister
+        // ... (Spannable code remains the same)
+
+        btnGoogle.setOnClickListener {
+            val signInIntent = googleSignInClient.signInIntent
+            googleSignInLauncher.launch(signInIntent)
+        }
+
+        // ... (Biometric setup remains the same)
         val fullText = "Belum punya akun? Daftar sekarang"
         val spannable = SpannableString(fullText)
         val startIndex = fullText.indexOf("Daftar sekarang")
@@ -133,6 +175,22 @@ class LoginActivity : AppCompatActivity() {
         tvRegister.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
+    }
+
+    private fun firebaseAuthWithGoogle(idToken: String) {
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
+        auth.signInWithCredential(credential)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    Log.d(TAG, "signInWithGoogle:success")
+                    Toast.makeText(this, "Login Google Berhasil.", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this, MainActivity::class.java))
+                    finish()
+                } else {
+                    Log.w(TAG, "signInWithGoogle:failure", task.exception)
+                    Toast.makeText(this, "Login Google Gagal: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
     }
 
     companion object {

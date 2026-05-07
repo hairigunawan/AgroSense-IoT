@@ -1,8 +1,9 @@
 package com.example.it_project_2;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.pm.PackageManager;
-import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,10 +17,13 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.Priority;
 import com.google.android.gms.tasks.CancellationTokenSource;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,7 +41,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class HomeFragment extends Fragment {
 
-    private TextView tvSuhu, tvKelembapan, tvHomeWeatherSummary;
+    private TextView tvSuhu, tvKelembapan, tvHomeWeatherSummary, tvStatusPenyiraman;
+    private View viewStatusDot;
     private FusedLocationProviderClient fusedLocationClient;
     private final String WEATHER_API_KEY = "440b67ccfc304047819164625260205";
 
@@ -50,6 +55,22 @@ public class HomeFragment extends Fragment {
 
         // Inisialisasi icon profile dan navigasi ke ProfileFragment
         ImageView ivProfile = view.findViewById(R.id.iv_profile_home);
+        
+        // Load profile picture from Firebase Auth using Glide
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null) {
+            Uri photoUrl = currentUser.getPhotoUrl();
+            if (photoUrl != null) {
+                Glide.with(this)
+                     .load(photoUrl)
+                     .placeholder(R.drawable.ic_person)
+                     .error(R.drawable.ic_person)
+                     .into(ivProfile);
+            } else {
+                ivProfile.setImageResource(R.drawable.ic_person);
+            }
+        }
+
         ivProfile.setOnClickListener(v -> {
             if (getActivity() != null) {
                 com.google.android.material.bottomnavigation.BottomNavigationView navView = 
@@ -60,11 +81,11 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        // Navigasi ke WeatherActivity jika card cuaca diklik
+        // Navigasi ke WeatherActivityModern jika card cuaca diklik
         View cardWeather = view.findViewById(R.id.cardWeather);
         if (cardWeather != null) {
             cardWeather.setOnClickListener(v -> {
-                android.content.Intent intent = new android.content.Intent(getActivity(), WeatherActivity.class);
+                android.content.Intent intent = new android.content.Intent(getActivity(), WeatherActivityModern.class);
                 startActivity(intent);
             });
         }
@@ -124,6 +145,29 @@ public class HomeFragment extends Fragment {
 
         tvSuhu = view.findViewById(R.id.suhuValue);
         tvKelembapan = view.findViewById(R.id.kelembapanValue);
+        tvStatusPenyiraman = view.findViewById(R.id.tvStatusPenyiraman);
+        viewStatusDot = view.findViewById(R.id.viewStatusDot);
+        TextView tvOnlineStatus = view.findViewById(R.id.tvOnlineStatus);
+
+        // Pulse animation for Online Status
+        if (tvOnlineStatus != null) {
+            android.animation.ObjectAnimator pulseAnim = android.animation.ObjectAnimator.ofFloat(tvOnlineStatus, "alpha", 1f, 0.4f);
+            pulseAnim.setDuration(1200);
+            pulseAnim.setRepeatMode(android.animation.ValueAnimator.REVERSE);
+            pulseAnim.setRepeatCount(android.animation.ValueAnimator.INFINITE);
+            pulseAnim.start();
+        }
+
+        // Animator for water pump status
+        android.animation.ObjectAnimator pumpAnim = android.animation.ObjectAnimator.ofFloat(viewStatusDot, "scaleX", 1f, 1.4f);
+        pumpAnim.setDuration(800);
+        pumpAnim.setRepeatMode(android.animation.ValueAnimator.REVERSE);
+        pumpAnim.setRepeatCount(android.animation.ValueAnimator.INFINITE);
+        
+        android.animation.ObjectAnimator pumpAnimY = android.animation.ObjectAnimator.ofFloat(viewStatusDot, "scaleY", 1f, 1.4f);
+        pumpAnimY.setDuration(800);
+        pumpAnimY.setRepeatMode(android.animation.ValueAnimator.REVERSE);
+        pumpAnimY.setRepeatCount(android.animation.ValueAnimator.INFINITE);
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("sensor");
 
@@ -132,6 +176,7 @@ public class HomeFragment extends Fragment {
             public void onDataChange(DataSnapshot snapshot) {
                 Integer suhu = snapshot.child("suhu").getValue(Integer.class);
                 Integer kelembapan = snapshot.child("kelembapan").getValue(Integer.class);
+                Boolean pompa = snapshot.child("pompa").getValue(Boolean.class);
 
                 if (suhu != null && tvSuhu != null) {
                     tvSuhu.setText(suhu + "°C");
@@ -139,6 +184,28 @@ public class HomeFragment extends Fragment {
 
                 if (kelembapan != null && tvKelembapan != null) {
                     tvKelembapan.setText(kelembapan + "%");
+                }
+
+                if (pompa != null && tvStatusPenyiraman != null && viewStatusDot != null) {
+                    if (pompa) {
+                        tvStatusPenyiraman.setText("Melakukan penyiraman");
+                        tvStatusPenyiraman.setTextColor(getResources().getColor(R.color.accent_blue));
+                        viewStatusDot.setBackgroundResource(R.drawable.dot_green);
+                        // start pulse animation
+                        if (!pumpAnim.isRunning()) {
+                            pumpAnim.start();
+                            pumpAnimY.start();
+                        }
+                    } else {
+                        tvStatusPenyiraman.setText("Tidak melakukan penyiraman");
+                        tvStatusPenyiraman.setTextColor(getResources().getColor(R.color.text_dark));
+                        viewStatusDot.setBackgroundResource(android.R.color.darker_gray);
+                        // stop pulse animation
+                        pumpAnim.cancel();
+                        pumpAnimY.cancel();
+                        viewStatusDot.setScaleX(1f);
+                        viewStatusDot.setScaleY(1f);
+                    }
                 }
             }
 
