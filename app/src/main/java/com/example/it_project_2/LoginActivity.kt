@@ -30,6 +30,11 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        val btnBack = findViewById<android.widget.ImageButton>(R.id.btn_back)
+
+        btnBack.setOnClickListener {
+            finish()
+        }
 
         auth = Firebase.auth
 

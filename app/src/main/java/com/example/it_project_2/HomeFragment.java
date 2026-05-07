@@ -46,6 +46,20 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+        // tombol back ke login
+        ImageView btnBack = view.findViewById(R.id.btn_back);
+
+        btnBack.setOnClickListener(v -> {
+            android.content.Intent intent =
+                    new android.content.Intent(getActivity(), LoginActivity.class);
+
+            startActivity(intent);
+
+            if (getActivity() != null) {
+                getActivity().finish();
+            }
+        });
+
         tvHomeWeatherSummary = view.findViewById(R.id.tvHomeWeatherSummary);
 
         // Inisialisasi icon profile dan navigasi ke ProfileFragment

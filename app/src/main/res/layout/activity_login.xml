@@ -11,11 +11,23 @@
         android:layout_height="wrap_content"
         android:padding="24dp">
 
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="8dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_arrow_back"
+            android:tint="@color/black"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
         <ImageView
             android:id="@+id/iv_logo"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="24dp"
             android:src="@drawable/ic_logo_irrigation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

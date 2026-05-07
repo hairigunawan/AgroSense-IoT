@@ -5,8 +5,20 @@
     android:layout_height="match_parent"
     android:background="@color/bg_light"
     android:orientation="vertical"
-    android:layout_marginTop="40dp"
+    android:layout_marginTop="20dp"
     android:padding="20dp">
+
+    <ImageButton
+        android:id="@+id/btn_back"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_arrow_back"
+        android:tint="@color/black"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <!-- HEADER -->
     <TextView
@@ -85,57 +97,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
                 app:cardCornerRadius="14dp"
-                app:cardElevation="4dp">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="16dp">
-
-                    <ImageView
-                        android:id="@+id/icon"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/ic_water_drop"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
-
-                    <TextView
-                        android:id="@+id/date"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="24 Januari 2025"
-                        android:textStyle="bold"
-                        android:textSize="15sp"
-                        android:textColor="#212121"
-                        app:layout_constraintStart_toEndOf="@id/icon"
-                        app:layout_constraintTop_toTopOf="@id/icon"
-                        app:layout_constraintEnd_toStartOf="@id/time"
-                        android:layout_marginStart="12dp"/>
-
-                    <TextView
-                        android:id="@+id/status"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="SELESAI"
-                        android:textColor="#4CAF50"
-                        android:textSize="12sp"
-                        app:layout_constraintStart_toStartOf="@id/date"
-                        app:layout_constraintTop_toBottomOf="@id/date"/>
-
-                    <TextView
-                        android:id="@+id/time"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="16:00"
-                        android:textSize="12sp"
-                        android:textColor="#757575"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@id/date"/>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
+                app:cardElevation="4dp"/>
 
             <!-- BUTTON -->
             <TextView

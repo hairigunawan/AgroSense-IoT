@@ -26,6 +26,13 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register) // Sesuaikan dengan layout Anda
 
+        // tombol back
+        val btnBack = findViewById<android.widget.ImageButton>(R.id.btn_back)
+
+        btnBack.setOnClickListener {
+            finish() // balik ke login
+        }
+
         auth = Firebase.auth
 
         // Contoh: Ambil input dari EditText dan tombol
