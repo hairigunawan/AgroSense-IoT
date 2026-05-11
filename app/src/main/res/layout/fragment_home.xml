@@ -20,16 +20,26 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp">
 
-            <com.google.android.material.imageview.ShapeableImageView
+            <ImageView
+                android:id="@+id/iv_notification_home"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="12dp"
+                android:padding="12dp"
+                android:src="@drawable/notification"
+                app:layout_constraintEnd_toStartOf="@+id/iv_profile_home"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/green_primary" />
+
+            <ImageView
                 android:id="@+id/iv_profile_home"
-                android:layout_width="52dp"
-                android:layout_height="52dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:background="@drawable/nav_highlight"
-                android:padding="6dp"
-                android:src="@drawable/ic_person"
+                android:padding="12dp"
+                android:src="@drawable/user"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:shapeAppearanceOverlay="@style/CircleImageView"
                 app:tint="@color/green_primary" />
 
             <LinearLayout

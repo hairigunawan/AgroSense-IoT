@@ -134,11 +134,11 @@ class ProfileFragment : Fragment() {
                 if (currentUser.photoUrl != null) {
                     Glide.with(this)
                         .load(currentUser.photoUrl)
-                        .placeholder(R.drawable.ic_person)
-                        .error(R.drawable.ic_person)
+                        .placeholder(R.drawable.user)
+                        .error(R.drawable.user)
                         .into(binding.ivProfile)
                 } else {
-                    binding.ivProfile.setImageResource(R.drawable.ic_person)
+                    binding.ivProfile.setImageResource(R.drawable.user)
                 }
             }
         } else {

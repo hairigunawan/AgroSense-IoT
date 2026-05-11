@@ -229,6 +229,56 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <!-- Humidity Card -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cvHumidity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/bg_glass_card"
+                android:padding="20dp"
+                app:layout_constraintTop_toBottomOf="@id/cvRainPrediction"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    android:id="@+id/tvHumidityTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kelembapan"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvHumiditySubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Kelembapan udara saat ini"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp"
+                    app:layout_constraintTop_toBottomOf="@id/tvHumidityTitle"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvHumidityPercent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="--%"
+                    android:textColor="@color/white"
+                    android:textSize="32sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
             <!-- Hourly -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cvHourly"
@@ -239,7 +289,7 @@
                 android:layout_marginEnd="24dp"
                 android:background="@drawable/bg_glass_card"
                 android:paddingBottom="12dp"
-                app:layout_constraintTop_toBottomOf="@id/cvRainPrediction"
+                app:layout_constraintTop_toBottomOf="@id/cvHumidity"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
 

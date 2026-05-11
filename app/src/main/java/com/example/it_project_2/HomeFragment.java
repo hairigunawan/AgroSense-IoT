@@ -63,11 +63,11 @@ public class HomeFragment extends Fragment {
             if (photoUrl != null) {
                 Glide.with(this)
                      .load(photoUrl)
-                     .placeholder(R.drawable.ic_person)
-                     .error(R.drawable.ic_person)
+                     .placeholder(R.drawable.user)
+                     .error(R.drawable.user)
                      .into(ivProfile);
             } else {
-                ivProfile.setImageResource(R.drawable.ic_person);
+                ivProfile.setImageResource(R.drawable.user);
             }
         }
 

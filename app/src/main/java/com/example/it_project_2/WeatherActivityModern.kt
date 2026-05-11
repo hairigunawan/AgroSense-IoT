@@ -218,6 +218,10 @@ class WeatherActivityModern : AppCompatActivity() {
         val feelsLike = data.current.feelsLikeC.roundToInt()
         binding.tvFeelsLike.text = "Terasa seperti $feelsLike°"
         
+        // Humidity
+        val humidity = data.current.humidity
+        binding.tvHumidityPercent.text = "$humidity%"
+        
         // Description
         binding.tvDescription.text = "Kondisi saat ini: ${data.current.condition.text} dengan suhu $currentTemp°C."
     }

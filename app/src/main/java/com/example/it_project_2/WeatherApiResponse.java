@@ -39,11 +39,15 @@ public class WeatherApiResponse {
         @SerializedName("is_day")
         private int isDay;
 
+        @SerializedName("humidity")
+        private int humidity;
+
         public double getTempC() { return tempC; }
         public double getFeelsLikeC() { return feelsLikeC; }
         public String getLastUpdated() { return lastUpdated; }
         public Condition getCondition() { return condition; }
         public int getIsDay() { return isDay; }
+        public int getHumidity() { return humidity; }
     }
 
     public static class Condition {
