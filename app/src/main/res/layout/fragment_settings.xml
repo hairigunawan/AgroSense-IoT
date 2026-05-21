@@ -25,15 +25,6 @@
             android:src="@drawable/ic_arrow_back"
             app:tint="#212121"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Pengaturan Sensor"
-            android:textColor="#212121"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:gravity="center" />
     </LinearLayout>
 
     <!-- CONTENT -->
@@ -58,7 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#1B5E20"
-                android:textSize="22sp"
+                android:textSize="26sp"
                 android:textStyle="bold"/>
 
             <TextView
