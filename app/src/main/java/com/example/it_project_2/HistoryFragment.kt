@@ -4,48 +4,62 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.it_project_2.adapter.HistoryAdapter
+import com.example.it_project_2.viewmodel.MainViewModel
 
 class HistoryFragment : Fragment() {
 
+    private lateinit var viewModel: MainViewModel
+    private lateinit var rvHistory: RecyclerView
+    private lateinit var adapter: HistoryAdapter
+    private lateinit var progressBar: ProgressBar
+    private lateinit var tvEmptyState: TextView
+
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_history, container, false)
-        
-        val rvHistory = view.findViewById<RecyclerView>(R.id.rvHistory)
-        val layoutEmptyState = view.findViewById<LinearLayout>(R.id.layoutEmptyState)
+        return inflater.inflate(R.layout.fragment_history, container, false)
+    }
 
-        // Data dummy untuk RecyclerView
-        val dummyData = listOf(
-            HistoryItem("24 Januari 2025", "16:00", "SELESAI"),
-            HistoryItem("23 Januari 2025", "16:05", "SELESAI"),
-            HistoryItem("22 Januari 2025", "16:10", "SELESAI"),
-            HistoryItem("21 Januari 2025", "16:00", "SELESAI"),
-            HistoryItem("20 Januari 2025", "15:55", "SELESAI"),
-            HistoryItem("19 Januari 2025", "16:02", "SELESAI")
-        )
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        if (dummyData.isEmpty()) {
-            rvHistory.visibility = View.GONE
-            layoutEmptyState.visibility = View.VISIBLE
-        } else {
-            rvHistory.visibility = View.VISIBLE
-            layoutEmptyState.visibility = View.GONE
-            
-            rvHistory.layoutManager = LinearLayoutManager(requireContext())
-            rvHistory.adapter = HistoryAdapter(dummyData)
-            
-            // Re-run layout animation when opening
-            rvHistory.scheduleLayoutAnimation()
+        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+
+        rvHistory = view.findViewById(R.id.rvHistory)
+        progressBar = view.findViewById(R.id.progressBarRiwayat)
+        tvEmptyState = view.findViewById(R.id.tvEmptyState)
+
+        rvHistory.layoutManager = LinearLayoutManager(context)
+        adapter = HistoryAdapter()
+        rvHistory.adapter = adapter
+
+        view.findViewById<View>(R.id.btnBackHistory).setOnClickListener {
+            navigateToHome()
         }
 
-        return view
+        viewModel.riwayatData.observe(viewLifecycleOwner) { list ->
+            progressBar.visibility = View.GONE
+            if (list.isEmpty()) {
+                tvEmptyState.visibility = View.VISIBLE
+                rvHistory.visibility = View.GONE
+            } else {
+                tvEmptyState.visibility = View.GONE
+                rvHistory.visibility = View.VISIBLE
+                adapter.setHistoryList(list)
+            }
+        }
+    }
+
+    private fun navigateToHome() {
+        val bottomNav = activity?.findViewById<com.google.android.material.bottomnavigation.BottomNavigationView>(R.id.bottom_navigation)
+        bottomNav?.selectedItemId = R.id.navigation_home
     }
 }

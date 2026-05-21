@@ -55,9 +55,12 @@ public class WeatherApiResponse {
         private String text;
         @SerializedName("icon")
         private String icon;
+        @SerializedName("code")
+        private int code;
 
         public String getText() { return text; }
         public String getIcon() { return "https:" + icon; }
+        public int getCode() { return code; }
     }
 
     public static class Forecast {

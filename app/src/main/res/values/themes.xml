@@ -9,7 +9,7 @@
 
     <style name="Theme.IT_Project_2" parent="Base.Theme.IT_Project_2" />
 
-    <style name="CircleImageView" parent="">
+    <style name="CircleImage">
         <item name="cornerSize">50%</item>
     </style>
 </resources>
