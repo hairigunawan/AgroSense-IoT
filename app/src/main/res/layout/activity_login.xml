@@ -9,7 +9,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="32dp">
+        android:paddingHorizontal="32dp"
+        android:paddingVertical="28dp">
 
         <ImageView
             android:id="@+id/iv_logo"
@@ -27,45 +28,31 @@
             android:layout_height="wrap_content"
             android:text="Selamat Datang"
             android:textColor="@color/text_dark"
-            android:textSize="28sp"
-            android:fontFamily="@font/manrope_extrabold"
+            android:textSize="30sp"
+            android:fontFamily="@font/manrope_bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_logo" />
 
-        <TextView
-            android:id="@+id/tv_login_subtitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Silakan masuk ke akun Anda"
-            android:textColor="@color/text_light"
-            android:textSize="16sp"
-            android:fontFamily="@font/manrope_medium"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_login_title" />
-
         <!-- Input Email -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_email"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            app:boxBackgroundColor="@android:color/transparent"
-            app:boxStrokeWidth="0dp"
-            app:boxStrokeWidthFocused="0dp"
+            app:boxBackgroundMode="none"
             app:hintEnabled="false"
-            app:layout_constraintTop_toBottomOf="@id/tv_login_subtitle">
+            app:layout_constraintTop_toBottomOf="@id/tv_login_title">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_email_login"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
+                android:layout_height="53dp"
                 android:background="@drawable/bg_input_modern"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
                 android:paddingHorizontal="16dp"
+                android:gravity="center_vertical"
                 android:textColor="@color/text_dark"
                 android:textColorHint="#94A3B8"
                 android:textSize="15sp"
@@ -75,13 +62,10 @@
         <!-- Input Password -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_password"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            app:boxBackgroundColor="@android:color/transparent"
-            app:boxStrokeWidth="0dp"
-            app:boxStrokeWidthFocused="0dp"
+            app:boxBackgroundMode="none"
             app:hintEnabled="false"
             app:passwordToggleEnabled="true"
             app:passwordToggleTint="#94A3B8"
@@ -90,21 +74,34 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_password_login"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
+                android:layout_height="53dp"
                 android:background="@drawable/bg_input_modern"
                 android:hint="Kata Sandi"
                 android:inputType="textPassword"
                 android:paddingHorizontal="16dp"
+                android:gravity="center_vertical"
                 android:textColor="@color/text_dark"
                 android:textColorHint="#94A3B8"
                 android:textSize="15sp"
                 android:fontFamily="@font/manrope_medium" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <TextView
+            android:id="@+id/tv_forgot_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Lupa Password?"
+            android:textColor="#0F6B30"
+            android:textSize="14sp"
+            android:fontFamily="@font/manrope_semibold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/til_password" />
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_login"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="55dp"
             android:layout_marginTop="32dp"
             android:text="Masuk"
             android:textAllCaps="false"
@@ -113,12 +110,12 @@
             app:backgroundTint="@color/green_primary"
             app:cornerRadius="16dp"
             app:elevation="0dp"
-            app:layout_constraintTop_toBottomOf="@id/til_password" />
+            app:layout_constraintTop_toBottomOf="@id/tv_forgot_password" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_google_login"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="55dp"
             android:layout_marginTop="12dp"
             android:text="Masuk dengan Google"
             android:textAllCaps="false"
@@ -151,19 +148,33 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
-        <TextView
-            android:id="@+id/tv_go_to_register"
+        <LinearLayout
+            android:id="@+id/ll_footer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:layout_marginBottom="32dp"
-            android:text="Belum punya akun? Daftar sekarang"
-            android:textColor="@color/text_light"
-            android:fontFamily="@font/manrope_medium"
+            android:orientation="horizontal"
+            android:layout_marginBottom="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_biometric" />
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/manrope_regular"
+                android:text="Belum punya akun? "
+                android:textColor="@color/text_light" />
+
+            <TextView
+                android:id="@+id/tv_go_to_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" Daftar sekarang"
+                android:textColor="@color/green_button"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:paddingStart="4dp" />
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
