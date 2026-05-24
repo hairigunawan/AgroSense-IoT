@@ -7,9 +7,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_weather_gradient">
 
-    <!-- Dynamic Gradient (Background already has bg_weather_gradient, we will animate it) -->
-    
-    <!-- Background Glow Effect -->
     <View
         android:id="@+id/vGlow"
         android:layout_width="350dp"
@@ -48,7 +45,6 @@
         android:layout_marginEnd="-50dp"
         android:layout_marginTop="120dp" />
 
-    <!-- Rain Particles Layer (Thin lines) -->
     <FrameLayout
         android:id="@+id/flRain"
         android:layout_width="0dp"
@@ -143,7 +139,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="H: 32°  L: 24°"
+                android:text="T: 32°  R: 24°"
                 android:textColor="@color/text_secondary"
                 android:textSize="16sp"
                 app:layout_constraintTop_toBottomOf="@id/tvCondition"
@@ -331,8 +327,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent">
 
-                    <include layout="@layout/item_daily_modern" />
-                    <include layout="@layout/item_daily_modern" />
                     <include layout="@layout/item_daily_modern" />
 
                 </LinearLayout>

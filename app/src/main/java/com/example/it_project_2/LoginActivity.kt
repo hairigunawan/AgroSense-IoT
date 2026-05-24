@@ -77,8 +77,13 @@ class LoginActivity : AppCompatActivity() {
         // ... (Spannable code remains the same)
 
         btnGoogle.setOnClickListener {
-            val signInIntent = googleSignInClient.signInIntent
-            googleSignInLauncher.launch(signInIntent)
+            // Force revoke access and sign out from Google to show account picker
+            googleSignInClient.revokeAccess().addOnCompleteListener {
+                googleSignInClient.signOut().addOnCompleteListener {
+                    val signInIntent = googleSignInClient.signInIntent
+                    googleSignInLauncher.launch(signInIntent)
+                }
+            }
         }
 
         // ... (Biometric setup remains the same)
@@ -148,6 +153,11 @@ class LoginActivity : AppCompatActivity() {
 
             if (email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Email dan password tidak boleh kosong.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                Toast.makeText(this, "Format email tidak valid.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 

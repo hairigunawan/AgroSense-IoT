@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">AgroSense IoT</string>
     <string name="default_web_client_id">782336359806-ga831p0e7gf0tpuf3ucumufdu86ji6sj.apps.googleusercontent.com</string>
+    <string name="welcome_text"><![CDATA[<font color="#32C766">Halo</font>, Selamat Datang]]></string>
 </resources>

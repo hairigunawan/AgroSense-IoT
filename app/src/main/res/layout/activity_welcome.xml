@@ -11,11 +11,11 @@
     <!-- Logo -->
     <ImageView
         android:id="@+id/iv_logo_welcome"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_marginBottom="24dp"
         android:layout_marginTop="100dp"
-        android:src="@drawable/ic_logo_irrigation"
+        android:src="@drawable/logo"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/tv_title_welcome"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +26,7 @@
         android:id="@+id/tv_title_welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Irigasi Pintar"
+        android:text="AgroSense-IoT"
         android:textColor="#212121"
         android:textSize="28sp"
         android:textStyle="bold"

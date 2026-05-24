@@ -4,12 +4,12 @@
     <color name="white">#FFFFFFFF</color>
 
     <!-- Style: Modern Soft UI -->
-    <color name="green_primary">#2E7D32</color> <!-- Hijau sesuai spek -->
-    <color name="blue_primary">#2196F3</color>  <!-- Biru sesuai spek -->
-    <color name="bg_neutral">#F5F5F5</color>    <!-- Background netral -->
+    <color name="green_primary">#32C766</color> <!-- Hijau sesuai spek -->
+    <color name="blue_primary">#4A90E2</color>  <!-- Biru lembut -->
+    <color name="bg_neutral">#F8F9FA</color>    <!-- Background netral -->
     
-    <color name="text_dark">#212121</color>
-    <color name="text_light">#757575</color>
+    <color name="text_dark">#11141B</color>
+    <color name="text_light">#787878</color>
 
     <!-- Aliases for layouts -->
     <color name="green_button">#2E7D32</color>
@@ -40,7 +40,9 @@
     <color name="bg_profile">#E8F5E9</color>
     <color name="accent_green">#C6FF00</color>
     <color name="text_grey">#9E9E9E</color>
-    <color name="green_light">#EAF4EC</color> <!-- Hijau muda untuk background kartu/tombol -->
     <color name="text_muted">#666666</color>
     <color name="bg_screen">#F7FBF8</color>
+    <color name="green_kangkung">#2E7D32</color>
+    <color name="green_light">#E8F5E9</color>
+    <color name="gray_background">#F5F5F5</color>
 </resources>

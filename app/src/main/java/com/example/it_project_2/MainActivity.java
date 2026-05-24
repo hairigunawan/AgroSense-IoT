@@ -12,6 +12,8 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 /**
  * MainActivity yang menangani navigasi fragment
@@ -21,6 +23,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Periksa apakah user sudah login
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser == null) {
+            // Jika tidak ada user yang login, arahkan ke WelcomeActivity
+            android.content.Intent intent = new android.content.Intent(this, WelcomeActivity.class);
+            startActivity(intent);
+            finish();
+            return;
+        }
         
         // Aktifkan Edge-to-Edge agar layout mengisi seluruh layar (termasuk area status bar & navigasi)
         WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
@@ -38,13 +50,16 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Menangani Insets untuk Navbar Card (Navigation Bar)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.bottom_navigation_card), (v, windowInsets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.bottom_nav_card), (v, windowInsets) -> {
             Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
+            
+            // Gunakan padding bawah alih-alih margin agar background kartu tetap menempel ke dasar layar
+            // namun konten (icon) tetap berada di atas area navigasi sistem (gestur/tombol)
+            v.setPadding(0, 0, 0, insets.bottom);
+            
+            // Reset margin jika ada
             ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) v.getLayoutParams();
-
-            // Margin bawah = tinggi navigasi sistem (tombol/gestur) + margin dasar (24dp)
-            int marginBase = (int) (24 * getResources().getDisplayMetrics().density);
-            mlp.bottomMargin = insets.bottom + marginBase;
+            mlp.bottomMargin = 0;
             v.setLayoutParams(mlp);
 
             return WindowInsetsCompat.CONSUMED;
