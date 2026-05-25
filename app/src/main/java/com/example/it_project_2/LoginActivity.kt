@@ -13,6 +13,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AlertDialog
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
@@ -73,12 +74,18 @@ class LoginActivity : AppCompatActivity() {
         val btnBiometric = findViewById<ImageButton>(R.id.btn_biometric)
         val btnGoogle = findViewById<Button>(R.id.btn_google_login)
         val tvRegister = findViewById<TextView>(R.id.tv_go_to_register)
+        val tvForgotPassword = findViewById<TextView>(R.id.tv_forgot_password)
 
         // ... (Spannable code remains the same)
 
         btnGoogle.setOnClickListener {
-            val signInIntent = googleSignInClient.signInIntent
-            googleSignInLauncher.launch(signInIntent)
+            // Force revoke access and sign out from Google to show account picker
+            googleSignInClient.revokeAccess().addOnCompleteListener {
+                googleSignInClient.signOut().addOnCompleteListener {
+                    val signInIntent = googleSignInClient.signInIntent
+                    googleSignInLauncher.launch(signInIntent)
+                }
+            }
         }
 
         // ... (Biometric setup remains the same)
@@ -151,6 +158,11 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                Toast.makeText(this, "Format email tidak valid.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
@@ -175,6 +187,54 @@ class LoginActivity : AppCompatActivity() {
         tvRegister.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
+
+        tvForgotPassword.setOnClickListener {
+            showForgotPasswordDialog()
+        }
+    }
+
+    private fun showForgotPasswordDialog() {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_forgot_password, null)
+
+        val builder = AlertDialog.Builder(this)
+        builder.setView(dialogView)
+        val dialog = builder.create()
+
+        // Make window background transparent so the rounded corners of MaterialCardView are visible
+        dialog.window?.setBackgroundDrawable(android.graphics.drawable.ColorDrawable(android.graphics.Color.TRANSPARENT))
+
+        val etEmail = dialogView.findViewById<EditText>(R.id.et_forgot_email)
+        val btnSend = dialogView.findViewById<Button>(R.id.btn_send_reset)
+        val btnCancel = dialogView.findViewById<TextView>(R.id.btn_cancel_reset)
+
+        btnSend.setOnClickListener {
+            val email = etEmail.text.toString().trim()
+            if (email.isEmpty()) {
+                Toast.makeText(this, "Email tidak boleh kosong.", Toast.LENGTH_SHORT).show()
+            } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                Toast.makeText(this, "Format email tidak valid.", Toast.LENGTH_SHORT).show()
+            } else {
+                sendPasswordResetEmail(email)
+                dialog.dismiss()
+            }
+        }
+
+        btnCancel.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
+
+    private fun sendPasswordResetEmail(email: String) {
+        auth.sendPasswordResetEmail(email)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(this, "Link reset password telah dikirim ke $email.", Toast.LENGTH_LONG).show()
+                } else {
+                    Toast.makeText(this, "Gagal mengirim link: ${task.exception?.message}", Toast.LENGTH_LONG).show()
+                }
+            }
     }
 
     private fun firebaseAuthWithGoogle(idToken: String) {

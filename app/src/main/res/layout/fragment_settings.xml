@@ -1,162 +1,565 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_light">
+    android:background="@color/bg_neutral"
+    android:clipToPadding="false"
+    android:clipChildren="false"
+    android:scrollbars="none">
 
-    <!-- TOP BAR -->
     <LinearLayout
-        android:id="@+id/toolbar"
-        android:layout_width="0dp"
-        android:layout_height="?attr/actionBarSize"
-        android:paddingHorizontal="16dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:layout_marginTop="40dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/screen_padding_horizontal"
+        android:paddingTop="@dimen/screen_padding_top"
+        android:paddingBottom="100dp"
+        android:clipChildren="false">
 
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_arrow_back"
-            app:tint="#212121"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Pengaturan Sensor"
-            android:textColor="#212121"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:gravity="center" />
-    </LinearLayout>
-
-    <!-- CONTENT -->
-    <ScrollView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:fillViewport="true"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
+        <!-- HEADER -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="20dp">
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginBottom="@dimen/spacing_large">
 
-            <!-- HEADER -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnBackSettings"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:padding="0dp"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                app:icon="@drawable/ic_arrow_back"
+                app:iconSize="24dp"
+                app:iconPadding="0dp"
+                app:iconGravity="start"
+                app:iconTint="@color/text_dark" />
+
             <TextView
-                android:text="Konfigurasi Sensor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#1B5E20"
-                android:textSize="22sp"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:text="Atur batas suhu dan kelembapan sistem secara otomatis"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#757575"
-                android:textSize="14sp"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="20dp"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="20dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:text="SUHU"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="11sp"
-                        android:textColor="#9E9E9E"
-                        android:textStyle="bold"/>
-
-                    <TextView
-                        android:text="Batas Suhu"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="18sp"
-                        android:textColor="#212121"
-                        android:textStyle="bold"/>
-
-                    <TextView
-                        android:id="@+id/tv_suhu_value"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="30°C"
-                        android:textSize="32sp"
-                        android:textStyle="bold"
-                        android:textColor="#3949AB"
-                        android:layout_marginTop="8dp"/>
-
-                    <com.google.android.material.slider.Slider
-                        android:id="@+id/slider_suhu"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:value="30"
-                        android:valueFrom="0"
-                        android:valueTo="100"
-                        app:trackColorActive="#3949AB"
-                        app:thumbColor="#3949AB" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="20dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:text="KELEMBAPAN"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="11sp"
-                        android:textColor="#9E9E9E"
-                        android:textStyle="bold"/>
-
-                    <TextView
-                        android:text="Kelembapan Tanah"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="18sp"
-                        android:textColor="#212121"
-                        android:textStyle="bold"/>
-
-                    <TextView
-                        android:id="@+id/tv_kelembapan_value"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="60%"
-                        android:textSize="32sp"
-                        android:textStyle="bold"
-                        android:textColor="#4CAF50"
-                        android:layout_marginTop="8dp"/>
-
-                    <com.google.android.material.slider.Slider
-                        android:id="@+id/slider_kelembapan"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:value="60"
-                        android:valueFrom="0"
-                        android:valueTo="100"
-                        app:trackColorActive="#4CAF50"
-                        app:thumbColor="#4CAF50" />
-                </LinearLayout>
-
+                android:layout_marginStart="@dimen/spacing_small"
+                android:text="Pengaturan Sistem"
+                android:textColor="@color/text_dark"
+                android:textSize="@dimen/text_size_title"
+                android:textStyle="bold"
+                android:fontFamily="@font/manrope_extrabold" />
         </LinearLayout>
-    </ScrollView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Konfigurasi ambang batas dan sistem otomasi greenhouse Anda."
+            android:textColor="@color/text_light"
+            android:textSize="@dimen/text_size_body"
+            android:layout_marginTop="-24dp"
+            android:fontFamily="@font/manrope_medium"
+            android:layout_marginBottom="@dimen/spacing_large"
+            android:layout_marginStart="56dp"/>
+
+        <!-- CARD PARAMETER LINGKUNGAN -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_medium"
+            app:cardCornerRadius="@dimen/card_corner_radius_small"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@color/white"
+            app:strokeWidth="1dp"
+            app:strokeColor="#F0F0F0">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                    <FrameLayout
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bg_icon_circle">
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_thermostat"
+                            app:tint="@color/green_primary"/>
+                    </FrameLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Parameter Lingkungan"
+                        android:layout_marginStart="@dimen/spacing_medium"
+                        android:textSize="@dimen/text_size_medium"
+                        android:fontFamily="@font/manrope_bold"
+                        android:textColor="@color/text_dark"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#F0F0F0"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:layout_marginBottom="@dimen/spacing_medium"/>
+
+                <!-- Suhu Minimum -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Suhu Minimum"
+                            android:textSize="@dimen/text_size_body"
+                            android:fontFamily="@font/manrope_semibold"
+                            android:textColor="@color/text_dark"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Batas bawah aktivasi sistem pendingin"
+                            android:textSize="@dimen/text_size_caption"
+                            android:fontFamily="@font/manrope_medium"
+                            android:textColor="@color/text_light"/>
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/tvSuhuBadge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_badge_green"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="4dp"
+                        android:text="24°C"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_caption"
+                        android:fontFamily="@font/manrope_bold"/>
+                </LinearLayout>
+
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/sliderSuhu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:valueFrom="0.0"
+                    android:valueTo="50.0"
+                    android:value="24.0"
+                    android:stepSize="1.0"
+                    app:thumbRadius="10dp"
+                    app:thumbColor="@color/green_primary"
+                    app:trackColorActive="@color/green_primary"
+                    app:trackColorInactive="#E8F5E9"
+                    app:labelBehavior="gone" />
+
+                <!-- Kelembapan Maksimum -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="@dimen/spacing_medium">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Kelembapan Udara Maks."
+                            android:textSize="@dimen/text_size_body"
+                            android:fontFamily="@font/manrope_semibold"
+                            android:textColor="@color/text_dark"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Batas atas kelembapan udara"
+                            android:textSize="@dimen/text_size_caption"
+                            android:fontFamily="@font/manrope_medium"
+                            android:textColor="@color/text_light"/>
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/tvKelembapanUdaraBadge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_badge_green"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="4dp"
+                        android:text="85%"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_caption"
+                        android:fontFamily="@font/manrope_bold"/>
+                </LinearLayout>
+
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/sliderKelembapanUdara"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:valueFrom="0.0"
+                    android:valueTo="100.0"
+                    android:value="85.0"
+                    android:stepSize="1.0"
+                    app:thumbRadius="10dp"
+                    app:thumbColor="@color/green_primary"
+                    app:trackColorActive="@color/green_primary"
+                    app:trackColorInactive="#E8F5E9"
+                    app:labelBehavior="gone" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- CARD KELEMBAPAN TANAH -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_medium"
+            app:cardCornerRadius="@dimen/card_corner_radius_small"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@color/white"
+            app:strokeWidth="1dp"
+            app:strokeColor="#F0F0F0">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                    <FrameLayout
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bg_icon_circle">
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_water_drop"
+                            app:tint="@color/green_primary"/>
+                    </FrameLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Kelembapan Tanah"
+                        android:layout_marginStart="@dimen/spacing_medium"
+                        android:textSize="@dimen/text_size_medium"
+                        android:fontFamily="@font/manrope_bold"
+                        android:textColor="@color/text_dark"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#F0F0F0"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:layout_marginBottom="@dimen/spacing_medium"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Atur rentang kelembapan tanah ideal untuk memicu penyiraman otomatis."
+                    android:textColor="@color/text_light"
+                    android:textSize="@dimen/text_size_caption"
+                    android:fontFamily="@font/manrope_medium"
+                    android:layout_marginBottom="@dimen/spacing_medium"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="Min (%)"
+                        app:boxStrokeColor="@color/green_primary"
+                        app:hintTextColor="@color/green_primary"
+                        app:boxCornerRadiusTopStart="12dp"
+                        app:boxCornerRadiusTopEnd="12dp"
+                        app:boxCornerRadiusBottomStart="12dp"
+                        app:boxCornerRadiusBottomEnd="12dp"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etKelembapanTanahMin"
+                            android:inputType="number"
+                            android:fontFamily="@font/manrope_bold"
+                            android:textColor="@color/text_light"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <View
+                        android:layout_width="12dp"
+                        android:layout_height="match_parent"/>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="Maks (%)"
+                        android:textColor="@color/text_light"
+                        app:boxStrokeColor="@color/green_primary"
+                        app:hintTextColor="@color/green_primary"
+
+                        app:boxCornerRadiusTopStart="12dp"
+                        app:boxCornerRadiusTopEnd="12dp"
+                        app:boxCornerRadiusBottomStart="12dp"
+                        app:boxCornerRadiusBottomEnd="12dp"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etKelembapanTanahMaks"
+                            android:inputType="number"
+                            android:fontFamily="@font/manrope_bold"
+                            android:textColor="@color/text_dark"                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- CARD SIKLUS POMPA -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_xlarge"
+            app:cardCornerRadius="@dimen/card_corner_radius_small"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@color/white"
+            app:strokeWidth="1dp"
+            app:strokeColor="#F0F0F0">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                    <FrameLayout
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bg_icon_circle">
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_water_drop"
+                            app:tint="@color/green_primary"/>
+                    </FrameLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Kontrol Pompa"
+                        android:layout_marginStart="@dimen/spacing_medium"
+                        android:textSize="@dimen/text_size_medium"
+                        android:fontFamily="@font/manrope_bold"
+                        android:textColor="@color/text_dark"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#F0F0F0"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:layout_marginBottom="@dimen/spacing_medium"/>
+
+                <!-- Mode Operasi -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="@dimen/spacing_medium">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Mode Operasi"
+                            android:textSize="@dimen/text_size_body"
+                            android:fontFamily="@font/manrope_semibold"
+                            android:textColor="@color/text_dark"/>
+                        <TextView
+                            android:id="@+id/tvModeLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Otomatis"
+                            android:textSize="@dimen/text_size_caption"
+                            android:fontFamily="@font/manrope_medium"
+                            android:textColor="@color/text_light"/>
+                    </LinearLayout>
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/switchMode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        app:useMaterialThemeColors="true" />
+                </LinearLayout>
+
+                <!-- Durasi Pompa -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="@dimen/spacing_medium">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Durasi Siram"
+                            android:textSize="@dimen/text_size_body"
+                            android:fontFamily="@font/manrope_semibold"
+                            android:textColor="@color/text_dark"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Lama aktif pompa dalam satu siklus"
+                            android:textSize="@dimen/text_size_caption"
+                            android:fontFamily="@font/manrope_medium"
+                            android:textColor="@color/text_light"/>
+                    </LinearLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        app:suffixText="dtk"
+                        app:suffixTextColor="@color/text_light"
+                        app:boxStrokeColor="@color/green_primary"
+                        app:hintEnabled="false"
+                        app:boxCornerRadiusTopStart="12dp"
+                        app:boxCornerRadiusTopEnd="12dp"
+                        app:boxCornerRadiusBottomStart="12dp"
+                        app:boxCornerRadiusBottomEnd="12dp"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etDurasiPompa"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:gravity="center"
+                            android:textColor="@color/text_dark"
+                            android:fontFamily="@font/manrope_bold"
+                            android:paddingTop="12dp"
+                            android:paddingBottom="12dp"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <!-- Jeda Pompa -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Jeda Antar Siram"
+                            android:textSize="@dimen/text_size_body"
+                            android:fontFamily="@font/manrope_semibold"
+                            android:textColor="@color/text_dark"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Waktu tunggu sebelum siklus berikutnya"
+                            android:textSize="@dimen/text_size_caption"
+                            android:fontFamily="@font/manrope_medium"
+                            android:textColor="@color/text_light"/>
+                    </LinearLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        app:suffixText="mnt"
+                        app:suffixTextColor="@color/text_light"
+                        app:boxStrokeColor="@color/green_primary"
+                        app:hintEnabled="false"
+                        app:boxCornerRadiusTopStart="12dp"
+                        app:boxCornerRadiusTopEnd="12dp"
+                        app:boxCornerRadiusBottomStart="12dp"
+                        app:boxCornerRadiusBottomEnd="12dp"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etJedaPompa"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:gravity="center"
+                            android:fontFamily="@font/manrope_bold"
+                            android:textColor="@color/text_dark"
+                            android:paddingTop="12dp"
+                            android:paddingBottom="12dp"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- BUTTON SIMPAN -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSimpanPengaturan"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:text="Simpan Konfigurasi"
+            android:textSize="@dimen/text_size_medium"
+            android:fontFamily="@font/manrope_bold"
+            app:icon="@drawable/ic_cloud_upload"
+            app:iconGravity="textStart"
+            app:iconPadding="@dimen/spacing_small"
+            app:cornerRadius="@dimen/button_corner_radius"
+            android:backgroundTint="@color/green_primary"
+            app:elevation="8dp"
+            android:layout_marginBottom="@dimen/spacing_medium"
+            android:stateListAnimator="@null"
+            android:textAllCaps="false"/>
+
+        <!-- FOOTER -->
+        <TextView
+            android:id="@+id/tvTerakhirDiperbarui"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Terakhir diperbarui: --"
+            android:gravity="center"
+            android:textColor="@color/text_light"
+            android:textSize="@dimen/text_size_caption"
+            android:fontFamily="@font/manrope_medium"
+            android:layout_marginBottom="40dp"/>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

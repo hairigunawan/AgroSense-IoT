@@ -68,44 +68,41 @@ class RegisterActivity : AppCompatActivity() {
             val email = etEmail.text.toString()
             val password = etPassword.text.toString()
 
-            // Client-side validation:
             if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Nama, Email dan password tidak boleh kosong.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            if (password.length < 6) { // Firebase Auth default min 6 karakter
+            if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                Toast.makeText(this, "Format email tidak valid.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            if (password.length < 6) {
                 Toast.makeText(this, "Password minimal 6 karakter.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            // Tambahkan validasi lain (misal: kombinasi huruf+angka) jika diperlukan
 
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
-                        // Registrasi berhasil
                         Log.d(TAG, "createUserWithEmail:success")
                         val user = auth.currentUser
                         
-                        // Set Display Name
                         val profileUpdates = com.google.firebase.auth.UserProfileChangeRequest.Builder()
                             .setDisplayName(name)
                             .build()
-                        user?.updateProfile(profileUpdates)
-                        
-                        // Kirim email verifikasi
-                        user?.sendEmailVerification()?.addOnCompleteListener { verificationTask ->
-                            if (verificationTask.isSuccessful) {
-                                Toast.makeText(baseContext, "Registrasi Berhasil. Silakan cek email Anda untuk verifikasi.", Toast.LENGTH_LONG).show()
-                            } else {
-                                Toast.makeText(baseContext, "Gagal mengirim email verifikasi: ${verificationTask.exception?.message}", Toast.LENGTH_LONG).show()
+                            
+                        user?.updateProfile(profileUpdates)?.addOnCompleteListener { profileTask ->
+                            user.sendEmailVerification().addOnCompleteListener { verificationTask ->
+                                if (verificationTask.isSuccessful) {
+                                    Toast.makeText(baseContext, "Registrasi Berhasil. Silakan cek email Anda untuk verifikasi.", Toast.LENGTH_LONG).show()
+                                } else {
+                                    Toast.makeText(baseContext, "Gagal mengirim email verifikasi: ${verificationTask.exception?.message}", Toast.LENGTH_LONG).show()
+                                }
+                                
+                                auth.signOut()
+                                startActivity(Intent(this, LoginActivity::class.java))
+                                finish()
                             }
-                            
-                            // Logout user setelah registrasi karena belum verifikasi email
-                            auth.signOut()
-                            
-                            // Redirect ke LoginActivity
-                            startActivity(Intent(this, LoginActivity::class.java))
-                            finish()
                         }
                     } else {
                         // Registrasi gagal

@@ -119,26 +119,8 @@ class WeatherActivityModern : AppCompatActivity() {
     }
 
     private fun fetchLocationAndWeather() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-            ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            
-            // If no permission, fallback to a default location
-            fetchWeatherData("Ujung Batu")
-            return
-        }
-
-        val cts = CancellationTokenSource()
-        fusedLocationClient.getCurrentLocation(Priority.PRIORITY_HIGH_ACCURACY, cts.token)
-            .addOnSuccessListener { location ->
-                if (location != null) {
-                    fetchWeatherData("${location.latitude},${location.longitude}")
-                } else {
-                    fetchWeatherData("Ujung Batu")
-                }
-            }
-            .addOnFailureListener {
-                fetchWeatherData("Ujung Batu")
-            }
+        // Lokasi di-hardcode ke 1 kelurahan/kecamatan sesuai permintaan
+        fetchWeatherData("Bajuin, Tanah Laut")
     }
 
     private fun fetchWeatherData(query: String) {
@@ -148,7 +130,7 @@ class WeatherActivityModern : AppCompatActivity() {
             .build()
 
         val weatherApi = retrofit.create(WeatherApi::class.java)
-        val call = weatherApi.getForecast(WEATHER_API_KEY, query, 1, "no", "no")
+        val call = weatherApi.getForecast(WEATHER_API_KEY, query, 1, "no", "no", "id")
 
         call.enqueue(object : Callback<WeatherApiResponse> {
             override fun onResponse(call: Call<WeatherApiResponse>, response: Response<WeatherApiResponse>) {
@@ -186,7 +168,7 @@ class WeatherActivityModern : AppCompatActivity() {
         if (todayForecast != null) {
             val max = todayForecast.day.maxTempC.roundToInt()
             val min = todayForecast.day.minTempC.roundToInt()
-            binding.tvHighLow.text = "H: $max°  L: $min°"
+            binding.tvHighLow.text = "T: $max°  R: $min°"
             
             // Rain Prediction Card update (Find max rain chance for today)
             val maxRainChance = todayForecast.hour.maxOfOrNull { it.chanceOfRain } ?: 0

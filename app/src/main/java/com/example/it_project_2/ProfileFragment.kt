@@ -11,8 +11,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.it_project_2.databinding.FragmentProfileBinding
+import com.example.it_project_2.viewmodel.MainViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.firestore.FirebaseFirestore
@@ -25,7 +27,9 @@ class ProfileFragment : Fragment() {
 
     private val db = FirebaseFirestore.getInstance()
     private val auth = FirebaseAuth.getInstance()
-    private val storage = FirebaseStorage.getInstance() // Menggunakan inisialisasi default dari google-services.json
+    private val storage = FirebaseStorage.getInstance() 
+
+    private lateinit var viewModel: MainViewModel
 
     private val pickImageLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -85,6 +89,8 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+
         loadUserProfile()
 
         binding.cardProfileImage.setOnClickListener {
@@ -99,6 +105,34 @@ class ProfileFragment : Fragment() {
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
             requireActivity().finish()
+        }
+
+        binding.btnBackProfile.setOnClickListener {
+            navigateToHome()
+        }
+
+        // Observe Device Status
+        viewModel.perangkatData.observe(viewLifecycleOwner) { perangkat ->
+            binding.tvDeviceName.text = perangkat.nama_perangkat
+            binding.tvDeviceIp.text = perangkat.ip_perangkat
+            binding.tvDeviceFirmware.text = perangkat.versi_firmware
+        }
+
+        viewModel.sensorData.observe(viewLifecycleOwner) { sensor ->
+            // uptime in milliseconds to readable format (e.g. 1d 2h 30m)
+            val uptime = sensor.waktu_hidup
+            val days = uptime / (24 * 3600000)
+            val hours = (uptime % (24 * 3600000)) / 3600000
+            val minutes = (uptime % 3600000) / 60000
+            
+            val uptimeStr = if (days > 0) {
+                "${days}h ${hours}j ${minutes}m"
+            } else if (hours > 0) {
+                "${hours}j ${minutes}m"
+            } else {
+                "${minutes}m"
+            }
+            binding.tvDeviceUptime.text = uptimeStr
         }
     }
 
@@ -147,6 +181,11 @@ class ProfileFragment : Fragment() {
                 binding.tvProfileEmail.text = "-"
             }
         }
+    }
+
+    private fun navigateToHome() {
+        val bottomNav = activity?.findViewById<com.google.android.material.bottomnavigation.BottomNavigationView>(R.id.bottom_navigation)
+        bottomNav?.selectedItemId = R.id.navigation_home
     }
 
     override fun onDestroyView() {

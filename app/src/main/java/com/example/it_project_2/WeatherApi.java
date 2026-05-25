@@ -12,7 +12,8 @@ public interface WeatherApi {
         @Query("q") String city,
         @Query("days") int days,
         @Query("aqi") String aqi,
-        @Query("alerts") String alerts
+        @Query("alerts") String alerts,
+        @Query("lang") String lang
     );
 
     // Old method for OpenWeather (kept for backward compatibility if needed in HomeFragment)

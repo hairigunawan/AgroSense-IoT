@@ -3,109 +3,79 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_light"
     android:orientation="vertical"
-    android:layout_marginTop="40dp"
-    android:padding="20dp">
+    android:background="@color/bg_neutral"
+    android:paddingHorizontal="@dimen/screen_padding_horizontal"
+    android:paddingTop="@dimen/screen_padding_top"
+    android:clipToPadding="false">
 
-    <!-- HEADER -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Riwayat Penyiraman"
-        android:textColor="#1B5E20"
-        android:textSize="26sp"
-        android:textStyle="bold"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Aktivitas 30 hari terakhir"
-        android:textColor="#777777"
-        android:textSize="13sp"
-        android:layout_marginTop="4dp"/>
-
-    <!-- CARD TOTAL -->
-    <androidx.cardview.widget.CardView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:cardCornerRadius="18dp"
-        app:cardElevation="6dp"
-        app:cardBackgroundColor="#3949AB">
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/spacing_large">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnBackHistory"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:padding="0dp"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            app:icon="@drawable/ic_arrow_back"
+            app:iconSize="24dp"
+            app:iconPadding="0dp"
+            app:iconGravity="start"
+            app:iconTint="@color/text_dark" />
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="22dp"
-            android:orientation="vertical">
+            android:layout_marginStart="@dimen/spacing_small"
+            android:text="Riwayat Sensor"
+            android:textColor="@color/text_dark"
+            android:textSize="@dimen/text_size_title"
+            android:textStyle="bold"
+            android:fontFamily="@font/manrope_extrabold" />
+    </LinearLayout>
 
-            <TextView
-                android:text="TOTAL PENYIRAMAN"
-                android:textColor="#C5CAE9"
-                android:textSize="12sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:text="122"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/white"
-                android:textSize="44sp"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:text="kali"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#C5CAE9"
-                android:textSize="14sp"/>
-
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <!-- RECYCLER VIEW & EMPTY STATE -->
-    <FrameLayout
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="20dp"
-        android:layout_weight="1">
+        android:layout_height="wrap_content"
+        android:text="Pantau aktivitas log sensor dan status otomasi greenhouse Anda secara berkala."
+        android:textColor="@color/text_light"
+        android:textSize="@dimen/text_size_body"
+        android:layout_marginTop="-24dp"
+        android:fontFamily="@font/manrope_medium"
+        android:layout_marginBottom="@dimen/spacing_large"
+        android:layout_marginStart="56dp"/>
+    <!-- Loading Animation -->
+    <ProgressBar
+        android:id="@+id/progressBarRiwayat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvHistory"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:paddingBottom="20dp"
-            android:layoutAnimation="@anim/layout_animation_fall_down"/>
+    <!-- Empty State -->
+    <TextView
+        android:id="@+id/tvEmptyState"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Belum ada riwayat data."
+        android:gravity="center"
+        android:textColor="@color/text_light"
+        android:layout_marginTop="50dp"
+        android:visibility="gone"/>
 
-        <!-- EMPTY STATE -->
-        <LinearLayout
-            android:id="@+id/layoutEmptyState"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:visibility="gone">
-
-            <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="@drawable/ic_water_drop"
-                app:tint="#BDBDBD" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Belum ada riwayat penyiraman"
-                android:textColor="#757575"
-                android:textSize="16sp" />
-        </LinearLayout>
-
-    </FrameLayout>
-
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvHistory"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="80dp"/>
 </LinearLayout>
