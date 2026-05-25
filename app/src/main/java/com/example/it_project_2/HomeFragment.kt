@@ -47,7 +47,7 @@ class HomeFragment : Fragment() {
     private lateinit var tvModeStatus: TextView
     private lateinit var tvDate: TextView
     private lateinit var tvGreeting: TextView
-    private lateinit var tvWifiValue: TextView
+
     private lateinit var tvWeatherHumidity: TextView
     private lateinit var tvWindSpeed: TextView
     
@@ -89,7 +89,6 @@ class HomeFragment : Fragment() {
         tvModeStatus = view.findViewById(R.id.tvModeStatus)
         tvDate = view.findViewById(R.id.tvDate)
         tvGreeting = view.findViewById(R.id.tvGreeting)
-        tvWifiValue = view.findViewById(R.id.tvWifiValue)
         tvWeatherHumidity = view.findViewById(R.id.tvWeatherHumidity)
         tvWindSpeed = view.findViewById(R.id.tvWindSpeed)
         
@@ -134,8 +133,6 @@ class HomeFragment : Fragment() {
             tvKelembapanTanah.text = "${sensor.kelembapan_persen}%"
             tvKelembapanUdara.text = "${sensor.kelembapan_udara}%"
             tvWeatherHumidity.text = "${sensor.kelembapan_udara}%"
-            tvWifiValue.text = if (sensor.sinyal_wifi > -70) "Optimal" else "Lemah"
-            tvWindSpeed.text = "Tenang" // Placeholder
 
             if (sensor.status_pompa) {
                 tvStatusPenyiraman.text = "Aktif"
@@ -185,20 +182,8 @@ class HomeFragment : Fragment() {
     }
 
     private fun fetchLocationAndWeather() {
-        if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
-            return
-        }
-
-        val cts = CancellationTokenSource()
-        fusedLocationClient.getCurrentLocation(Priority.PRIORITY_HIGH_ACCURACY, cts.token)
-            .addOnSuccessListener { location ->
-                if (location != null) {
-                    getWeatherSummary("${location.latitude},${location.longitude}")
-                } else {
-                    getWeatherSummary("Ujung Batu")
-                }
-            }
+        // Lokasi di-hardcode ke 1 kelurahan/kecamatan sesuai permintaan
+        getWeatherSummary("Bajuin, Tanah Laut")
     }
 
     private fun getWeatherSummary(query: String) {
