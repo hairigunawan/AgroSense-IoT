@@ -119,26 +119,8 @@ class WeatherActivityModern : AppCompatActivity() {
     }
 
     private fun fetchLocationAndWeather() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-            ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            
-            // If no permission, fallback to a default location
-            fetchWeatherData("Ujung Batu")
-            return
-        }
-
-        val cts = CancellationTokenSource()
-        fusedLocationClient.getCurrentLocation(Priority.PRIORITY_HIGH_ACCURACY, cts.token)
-            .addOnSuccessListener { location ->
-                if (location != null) {
-                    fetchWeatherData("${location.latitude},${location.longitude}")
-                } else {
-                    fetchWeatherData("Ujung Batu")
-                }
-            }
-            .addOnFailureListener {
-                fetchWeatherData("Ujung Batu")
-            }
+        // Lokasi di-hardcode ke 1 kelurahan/kecamatan sesuai permintaan
+        fetchWeatherData("Bajuin, Tanah Laut")
     }
 
     private fun fetchWeatherData(query: String) {

@@ -384,7 +384,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:orientation="horizontal"
-                android:weightSum="2"
+                android:weightSum="1"
                 android:clipChildren="false"
                 android:clipToPadding="false">
 
@@ -394,110 +394,80 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_margin="6dp"
-                    app:cardBackgroundColor="@android:color/white"
-                    app:cardCornerRadius="15dp"
-                    app:cardElevation="2dp"
-                    app:strokeWidth="1dp"
-                    app:strokeColor="#F1F5F9">
-                    <LinearLayout
+                    app:cardCornerRadius="22dp"
+                    app:cardElevation="4dp"
+                    app:strokeWidth="0dp"
+                    app:cardBackgroundColor="@android:color/white">
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="20dp">
-                        
-                        <ImageView
-                            android:layout_width="36dp"
-                            android:layout_height="36dp"
-                            android:background="@drawable/bg_circle"
-                            android:backgroundTint="#F5F3FF"
-                            android:padding="8dp"
-                            android:src="@drawable/ic_cloud"
-                            app:tint="#8B5CF6" />
+                        android:layout_height="180dp"
+                        android:background="@drawable/bg_humidity_card">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
-                            android:text="Kelembapan Udara"
-                            android:textColor="#64748B"
-                            android:textSize="12sp"
-                            android:fontFamily="@font/manrope_medium" />
+                        <!-- Dekorasi Lingkaran -->
+                        <View
+                            android:layout_width="140dp"
+                            android:layout_height="140dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="-30dp"
+                            android:layout_marginEnd="-20dp"
+                            android:background="@drawable/bg_circle_transparent"/>
 
-                        <TextView
-                            android:id="@+id/kelembapanUdaraValue"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="45%"
-                            android:textColor="#1E293B"
-                            android:textSize="22sp"
-                            android:fontFamily="@font/manrope_extrabold" />
+                        <!-- Dekorasi Bawah -->
+                        <View
+                            android:layout_width="180dp"
+                            android:layout_height="80dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentEnd="true"
+                            android:background="@drawable/bg_wave_purple"/>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="Normal"
-                            android:textColor="#10B981"
-                            android:textSize="12sp"
-                            android:fontFamily="@font/manrope_bold" />
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:padding="20dp">
 
-                <!-- WIFI / SINYAL -->
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_margin="6dp"
-                    app:cardBackgroundColor="@android:color/white"
-                    app:cardCornerRadius="15dp"
-                    app:cardElevation="2dp"
-                    app:strokeWidth="1dp"
-                    app:strokeColor="#F1F5F9">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="20dp">
-                        
-                        <ImageView
-                            android:layout_width="36dp"
-                            android:layout_height="36dp"
-                            android:background="@drawable/bg_circle"
-                            android:backgroundTint="#ECFDF5"
-                            android:padding="8dp"
-                            android:src="@drawable/ic_settings"
-                            app:tint="#10B981" />
+                            <!-- Icon -->
+                            <ImageView
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:background="@drawable/bg_icon_purple"
+                                android:padding="10dp"
+                                android:src="@drawable/ic_cloud"
+                                app:tint="#7C3AED" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
-                            android:text="Sinyal Perangkat"
-                            android:textColor="#64748B"
-                            android:textSize="12sp"
-                            android:fontFamily="@font/manrope_medium" />
+                            <!-- Title -->
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="14dp"
+                                android:text="Kelembapan Udara"
+                                android:textColor="#64748B"
+                                android:textSize="13sp"
+                                android:fontFamily="@font/manrope_medium" />
 
-                        <TextView
-                            android:id="@+id/tvWifiValue"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="Optimal"
-                            android:textColor="#1E293B"
-                            android:textSize="20sp"
-                            android:fontFamily="@font/manrope_extrabold" />
+                            <!-- Value -->
+                            <TextView
+                                android:id="@+id/kelembapanUdaraValue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="6dp"
+                                android:text="45%"
+                                android:textColor="#0F172A"
+                                android:textSize="34sp"
+                                android:fontFamily="@font/manrope_extrabold" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="Online"
-                            android:textColor="#10B981"
-                            android:textSize="12sp"
-                            android:fontFamily="@font/manrope_bold" />
-                    </LinearLayout>
+                            <!-- Status -->
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="6dp"
+                                android:text="Normal"
+                                android:textColor="#10B981"
+                                android:textSize="14sp"
+                                android:fontFamily="@font/manrope_bold" />
+                        </LinearLayout>
+                    </RelativeLayout>
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
 
