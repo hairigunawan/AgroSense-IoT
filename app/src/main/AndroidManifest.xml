@@ -42,7 +42,18 @@
             android:name=".WeatherActivityModern"
             android:exported="true" />
 
-    </application>
+        <activity
+            android:name=".NotificationActivity"
+            android:exported="false" />
 
+        <activity
+            android:name=".SecurityActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".AboutActivity"
+            android:exported="false" />
+
+    </application>
 
 </manifest>
