@@ -42,9 +42,12 @@ class LoginActivity : AppCompatActivity() {
                 val account = task.getResult(ApiException::class.java)!!
                 firebaseAuthWithGoogle(account.idToken!!)
             } catch (e: ApiException) {
-                Log.w(TAG, "Google sign in failed", e)
+                Log.w(TAG, "Google sign in failed with ApiException", e)
                 Toast.makeText(this, "Login Google gagal: ${e.message}", Toast.LENGTH_SHORT).show()
             }
+        } else {
+            Log.w(TAG, "Google sign in canceled or failed. Result code: ${result.resultCode}")
+            Toast.makeText(this, "Login Google dibatalkan/gagal (Kode: ${result.resultCode})", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -79,13 +82,8 @@ class LoginActivity : AppCompatActivity() {
         // ... (Spannable code remains the same)
 
         btnGoogle.setOnClickListener {
-            // Force revoke access and sign out from Google to show account picker
-            googleSignInClient.revokeAccess().addOnCompleteListener {
-                googleSignInClient.signOut().addOnCompleteListener {
-                    val signInIntent = googleSignInClient.signInIntent
-                    googleSignInLauncher.launch(signInIntent)
-                }
-            }
+            val signInIntent = googleSignInClient.signInIntent
+            googleSignInLauncher.launch(signInIntent)
         }
 
         // ... (Biometric setup remains the same)

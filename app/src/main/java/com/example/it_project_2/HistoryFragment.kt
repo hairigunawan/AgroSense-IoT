@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.it_project_2.adapter.HistoryAdapter
+import com.example.it_project_2.model.RiwayatModel
 import com.example.it_project_2.viewmodel.MainViewModel
 
 class HistoryFragment : Fragment() {
@@ -45,14 +46,24 @@ class HistoryFragment : Fragment() {
             navigateToHome()
         }
 
+        // --- INJECT DUMMY DATA LANGSUNG ---
+        val dummyData = listOf(
+            RiwayatModel("1", "28 Mei 2026 08:00", 28.5f, 65, true),
+            RiwayatModel("2", "27 Mei 2026 18:30", 29.1f, 50, false),
+            RiwayatModel("3", "27 Mei 2026 07:15", 27.8f, 70, true),
+            RiwayatModel("4", "26 Mei 2026 17:45", 30.2f, 45, false),
+            RiwayatModel("5", "26 Mei 2026 08:10", 28.0f, 60, true)
+        )
+        
+        tvEmptyState.visibility = View.GONE
+        rvHistory.visibility = View.VISIBLE
+        progressBar.visibility = View.GONE
+        adapter.setHistoryList(dummyData)
+
+        // Tetap observe firebase. Jika firebase mengirim data, maka akan menimpa dummy
         viewModel.riwayatData.observe(viewLifecycleOwner) { list ->
             progressBar.visibility = View.GONE
-            if (list.isEmpty()) {
-                tvEmptyState.visibility = View.VISIBLE
-                rvHistory.visibility = View.GONE
-            } else {
-                tvEmptyState.visibility = View.GONE
-                rvHistory.visibility = View.VISIBLE
+            if (list.isNotEmpty()) {
                 adapter.setHistoryList(list)
             }
         }

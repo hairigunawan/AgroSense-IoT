@@ -35,6 +35,9 @@ class RegisterActivity : AppCompatActivity() {
                 Log.w(TAG, "Google sign in failed", e)
                 Toast.makeText(this, "Pendaftaran Google gagal: ${e.message}", Toast.LENGTH_SHORT).show()
             }
+        } else {
+            Log.w(TAG, "Google sign in canceled or failed. Result code: ${result.resultCode}")
+            Toast.makeText(this, "Daftar Google dibatalkan/gagal (Kode: ${result.resultCode})", Toast.LENGTH_SHORT).show()
         }
     }
 
