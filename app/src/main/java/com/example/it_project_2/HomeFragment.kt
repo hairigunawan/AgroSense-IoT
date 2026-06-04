@@ -61,7 +61,7 @@ class HomeFragment : Fragment() {
         if (isGranted) {
             fetchLocationAndWeather()
         } else {
-            getWeatherSummary("Ujung Batu")
+            getWeatherSummary("-3.7921389,114.8079722")
             Toast.makeText(requireContext(), "Izin lokasi ditolak, menampilkan cuaca default.", Toast.LENGTH_SHORT).show()
         }
     }
@@ -170,7 +170,7 @@ class HomeFragment : Fragment() {
 
         ivProfile.setOnClickListener {
             val navView = requireActivity().findViewById<com.google.android.material.bottomnavigation.BottomNavigationView>(R.id.bottom_navigation)
-            navView?.selectedItemId = R.id.navigation_profile
+            navView?.selectedItemId = R.id.navigation_settings
         }
 
         view.findViewById<View>(R.id.cardWeather)?.setOnClickListener {
@@ -182,8 +182,8 @@ class HomeFragment : Fragment() {
     }
 
     private fun fetchLocationAndWeather() {
-        // Lokasi di-hardcode ke 1 kelurahan/kecamatan sesuai permintaan
-        getWeatherSummary("Bajuin, Tanah Laut")
+        // Lokasi di-hardcode sesuai permintaan koordinat: 3°47'31.7"S 114°48'28.7"E
+        getWeatherSummary("-3.7921389,114.8079722")
     }
 
     private fun getWeatherSummary(query: String) {
@@ -204,30 +204,16 @@ class HomeFragment : Fragment() {
                         
                         val conditionCode = data.current.condition.code
                         val conditionText = data.current.condition.text
+                        val isDay = data.current.isDay
                         tvHomeWeatherCondition.text = conditionText
 
-                        when {
-                            conditionCode == 1000 -> {
-                                ivWeatherIcon3D.setImageResource(R.drawable.cerah)
-                                layoutWeatherBg.setBackgroundResource(R.drawable.bg_weather_gradient_day)
-                            }
-                            conditionCode in listOf(1003, 1006, 1009, 1030) -> {
-                                ivWeatherIcon3D.setImageResource(R.drawable.cerah)
-                                layoutWeatherBg.setBackgroundResource(R.drawable.bg_weather_gradient_day)
-                            }
-                            conditionCode in listOf(1063, 1180, 1183, 1186, 1189, 1192, 1195) -> {
-                                ivWeatherIcon3D.setImageResource(R.drawable.hujan_ringan)
-                                layoutWeatherBg.setBackgroundResource(R.drawable.bg_weather_gradient)
-                            }
-                            conditionCode in listOf(1087, 1273, 1276, 1279, 1282) -> {
-                                ivWeatherIcon3D.setImageResource(R.drawable.hujan_badai)
-                                layoutWeatherBg.setBackgroundResource(R.drawable.bg_weather_gradient)
-                            }
-                            else -> {
-                                ivWeatherIcon3D.setImageResource(R.drawable.cerah)
-                                layoutWeatherBg.setBackgroundResource(R.drawable.bg_weather_gradient_day)
-                            }
-                        }
+                        val theme = com.example.it_project_2.utils.WeatherThemeEngine.getTheme(conditionCode, isDay)
+                        
+                        layoutWeatherBg.setBackgroundResource(theme.backgroundResId)
+                        ivWeatherIcon3D.setImageResource(theme.iconResId)
+                        
+                        // We already have a transparent navy overlay in XML, but we can tweak it if needed.
+                        // For now, the text is white and the gradient handles the colors beautifully.
                     }
                 }
                 override fun onFailure(call: Call<WeatherApiResponse>, t: Throwable) {}

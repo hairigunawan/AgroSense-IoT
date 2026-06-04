@@ -1,68 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/bg_neutral"
-    android:clipToPadding="false"
-    android:clipChildren="false"
-    android:scrollbars="none">
+    android:fitsSystemWindows="true">
 
+    <!-- HEADER SECTION STANDARDIZED -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingHorizontal="@dimen/screen_padding_horizontal"
-        android:paddingTop="@dimen/screen_padding_top"
-        android:paddingBottom="100dp"
-        android:clipChildren="false">
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="24dp"
+        android:paddingBottom="24dp"
+        android:background="@android:color/transparent">
 
-        <!-- HEADER -->
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="4dp"
+            android:src="@drawable/ic_arrow_back"
+            app:tint="@color/text_dark" />
+
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:layout_marginBottom="@dimen/spacing_large">
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnBackSettings"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:padding="0dp"
-                android:insetLeft="0dp"
-                android:insetTop="0dp"
-                android:insetRight="0dp"
-                android:insetBottom="0dp"
-                app:icon="@drawable/ic_arrow_back"
-                app:iconSize="24dp"
-                app:iconPadding="0dp"
-                app:iconGravity="start"
-                app:iconTint="@color/text_dark" />
+            android:layout_weight="1"
+            android:layout_marginStart="16dp"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacing_small"
                 android:text="Pengaturan Sistem"
                 android:textColor="@color/text_dark"
-                android:textSize="@dimen/text_size_title"
-                android:textStyle="bold"
+                android:textSize="22sp"
                 android:fontFamily="@font/manrope_extrabold" />
-        </LinearLayout>
 
-        <TextView
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Konfigurasi ambang batas dan otomasi"
+                android:textColor="#9E9E9E"
+                android:textSize="13sp"
+                android:fontFamily="@font/manrope_medium" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:clipChildren="false"
+        android:scrollbars="none">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Konfigurasi ambang batas dan sistem otomasi greenhouse Anda."
-            android:textColor="@color/text_light"
-            android:textSize="@dimen/text_size_body"
-            android:layout_marginTop="-24dp"
-            android:fontFamily="@font/manrope_medium"
-            android:layout_marginBottom="@dimen/spacing_large"
-            android:layout_marginStart="56dp"/>
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/screen_padding_horizontal"
+            android:paddingBottom="100dp"
+            android:clipChildren="false">
 
         <!-- CARD PARAMETER LINGKUNGAN -->
         <com.google.android.material.card.MaterialCardView
@@ -561,5 +566,15 @@
             android:fontFamily="@font/manrope_medium"
             android:layout_marginBottom="40dp"/>
 
-    </LinearLayout>
-</androidx.core.widget.NestedScrollView>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressBarSensor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:indeterminateTint="@color/green_primary" />
+
+</LinearLayout>

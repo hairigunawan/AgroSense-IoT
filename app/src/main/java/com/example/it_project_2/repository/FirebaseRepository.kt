@@ -66,8 +66,8 @@ class FirebaseRepository {
         return data
     }
 
-    fun updatePengaturan(pengaturan: PengaturanModel) {
-        pengaturanRef.setValue(pengaturan)
+    fun updatePengaturan(pengaturan: PengaturanModel): com.google.android.gms.tasks.Task<Void> {
+        return pengaturanRef.setValue(pengaturan)
     }
 
     // Perangkat Data

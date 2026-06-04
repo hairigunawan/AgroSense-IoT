@@ -1,81 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/bg_neutral"
-    android:paddingHorizontal="@dimen/screen_padding_horizontal"
-    android:paddingTop="@dimen/screen_padding_top"
-    android:clipToPadding="false">
+    android:background="#F4F6F9"
+    android:clipToPadding="false"
+    android:fitsSystemWindows="true">
 
+    <!-- Header Minimalis -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:layout_marginBottom="@dimen/spacing_large">
+        android:gravity="center_vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="24dp"
+        android:paddingBottom="24dp"
+        android:background="@android:color/transparent">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnBackHistory"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:padding="0dp"
-            android:insetLeft="0dp"
-            android:insetTop="0dp"
-            android:insetRight="0dp"
-            android:insetBottom="0dp"
-            app:icon="@drawable/ic_arrow_back"
-            app:iconSize="24dp"
-            app:iconPadding="0dp"
-            app:iconGravity="start"
-            app:iconTint="@color/text_dark" />
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="4dp"
+            android:src="@drawable/ic_arrow_back"
+            app:tint="@color/text_dark" />
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_small"
-            android:text="Riwayat Sensor"
-            android:textColor="@color/text_dark"
-            android:textSize="@dimen/text_size_title"
-            android:textStyle="bold"
-            android:fontFamily="@font/manrope_extrabold" />
+            android:layout_weight="1"
+            android:layout_marginStart="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_title_history"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Riwayat Aktivitas"
+                android:textColor="@color/text_dark"
+                android:textSize="22sp"
+                android:fontFamily="@font/manrope_extrabold" />
+                
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Log sensor dan status pompa air"
+                android:textColor="#9E9E9E"
+                android:textSize="13sp"
+                android:fontFamily="@font/manrope_medium" />
+        </LinearLayout>
+            
     </LinearLayout>
 
-    <TextView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Pantau aktivitas log sensor dan status otomasi greenhouse Anda secara berkala."
-        android:textColor="@color/text_light"
-        android:textSize="@dimen/text_size_body"
-        android:layout_marginTop="-24dp"
-        android:fontFamily="@font/manrope_medium"
-        android:layout_marginBottom="@dimen/spacing_large"
-        android:layout_marginStart="56dp"/>
-    <!-- Loading Animation -->
-    <ProgressBar
-        android:id="@+id/progressBarRiwayat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"/>
+        android:layout_height="match_parent">
 
-    <!-- Empty State -->
-    <TextView
-        android:id="@+id/tvEmptyState"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Belum ada riwayat data."
-        android:gravity="center"
-        android:textColor="@color/text_light"
-        android:layout_marginTop="50dp"
-        android:visibility="gone"/>
+        <!-- Loading Animation -->
+        <ProgressBar
+            android:id="@+id/progressBarRiwayat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="visible"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvHistory"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:paddingBottom="80dp"/>
+        <!-- Empty State -->
+        <LinearLayout
+            android:id="@+id/layoutEmptyState"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:visibility="gone">
+            
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/ic_history"
+                app:tint="#E0E0E0"/>
+                
+            <TextView
+                android:id="@+id/tvEmptyState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Belum ada riwayat"
+                android:textColor="#9E9E9E"
+                android:textSize="16sp"
+                android:fontFamily="@font/manrope_semibold"/>
+        </LinearLayout>
+
+        <!-- RecyclerView -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvHistory"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="100dp"
+            tools:listitem="@layout/item_history"/>
+    </FrameLayout>
 </LinearLayout>

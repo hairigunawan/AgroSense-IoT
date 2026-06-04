@@ -24,6 +24,9 @@ class RegisterActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
+    private lateinit var progressBar: android.widget.ProgressBar
+    private lateinit var btnRegister: Button
+    private lateinit var btnGoogle: Button
 
     private val googleSignInLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == RESULT_OK) {
@@ -32,9 +35,26 @@ class RegisterActivity : AppCompatActivity() {
                 val account = task.getResult(ApiException::class.java)!!
                 firebaseAuthWithGoogle(account.idToken!!)
             } catch (e: ApiException) {
+                setLoading(false)
                 Log.w(TAG, "Google sign in failed", e)
                 Toast.makeText(this, "Pendaftaran Google gagal: ${e.message}", Toast.LENGTH_SHORT).show()
             }
+        } else {
+            setLoading(false)
+            Log.w(TAG, "Google sign in canceled or failed. Result code: ${result.resultCode}")
+            Toast.makeText(this, "Daftar Google dibatalkan/gagal (Kode: ${result.resultCode})", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun setLoading(isLoading: Boolean) {
+        if (isLoading) {
+            progressBar.visibility = android.view.View.VISIBLE
+            btnRegister.isEnabled = false
+            btnGoogle.isEnabled = false
+        } else {
+            progressBar.visibility = android.view.View.GONE
+            btnRegister.isEnabled = true
+            btnGoogle.isEnabled = true
         }
     }
 
@@ -43,6 +63,9 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_register) // Sesuaikan dengan layout Anda
 
         auth = Firebase.auth
+        progressBar = findViewById(R.id.pb_register)
+        btnRegister = findViewById(R.id.btn_register)
+        btnGoogle = findViewById(R.id.btn_google_register)
 
         // Configure Google Sign In
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -55,10 +78,9 @@ class RegisterActivity : AppCompatActivity() {
         val etName = findViewById<EditText>(R.id.et_name_register) // ID EditText nama
         val etEmail = findViewById<EditText>(R.id.et_email_register) // ID EditText email
         val etPassword = findViewById<EditText>(R.id.et_password_register) // ID EditText password
-        val btnRegister = findViewById<Button>(R.id.btn_register) // ID Button daftar
-        val btnGoogle = findViewById<Button>(R.id.btn_google_register) // ID Button Google
 
         btnGoogle.setOnClickListener {
+            setLoading(true)
             val signInIntent = googleSignInClient.signInIntent
             googleSignInLauncher.launch(signInIntent)
         }
@@ -81,6 +103,7 @@ class RegisterActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            setLoading(true)
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
@@ -93,6 +116,7 @@ class RegisterActivity : AppCompatActivity() {
                             
                         user?.updateProfile(profileUpdates)?.addOnCompleteListener { profileTask ->
                             user.sendEmailVerification().addOnCompleteListener { verificationTask ->
+                                setLoading(false)
                                 if (verificationTask.isSuccessful) {
                                     Toast.makeText(baseContext, "Registrasi Berhasil. Silakan cek email Anda untuk verifikasi.", Toast.LENGTH_LONG).show()
                                 } else {
@@ -106,6 +130,7 @@ class RegisterActivity : AppCompatActivity() {
                         }
                     } else {
                         // Registrasi gagal
+                        setLoading(false)
                         Log.w(TAG, "createUserWithEmail:failure", task.exception)
                         Toast.makeText(baseContext, "Registrasi Gagal: ${task.exception?.message}",
                             Toast.LENGTH_LONG).show()

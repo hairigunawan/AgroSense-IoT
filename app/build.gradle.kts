@@ -75,4 +75,5 @@ dependencies {
     implementation(libs.play.services.location)
 
     implementation("com.google.firebase:firebase-database-ktx:20.3.0")
+    implementation("com.google.firebase:firebase-messaging:23.4.1")
 }

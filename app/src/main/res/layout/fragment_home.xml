@@ -2,10 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_neutral">
+    android:background="#F8FAFC">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -19,8 +18,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingHorizontal="@dimen/screen_padding_horizontal"
-            android:paddingTop="@dimen/screen_padding_top"
+            android:paddingHorizontal="24dp"
+            android:paddingTop="32dp"
+            android:paddingBottom="100dp"
             android:clipChildren="false"
             android:clipToPadding="false">
 
@@ -35,17 +35,18 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    app:layout_constraintEnd_toStartOf="@id/card_profile_image"
+                    app:layout_constraintEnd_toStartOf="@id/card_notification"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent">
 
                     <TextView
                         android:id="@+id/tvDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="24 Oktober 2023"
-                        android:textColor="@color/text_light"
-                        android:textSize="14sp"
+                        android:text="24 Oktober 2026"
+                        android:textColor="#64748B"
+                        android:textSize="13sp"
                         android:fontFamily="@font/manrope_medium" />
 
                     <TextView
@@ -53,43 +54,45 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Selamat Pagi, Alex"
-                        android:fontFamily="sans-serif-black"
-                        android:textColor="@color/text_dark"
-                        android:textSize="24sp" />
+                        android:fontFamily="@font/manrope_extrabold"
+                        android:textColor="#0F172A"
+                        android:textSize="22sp"
+                        android:layout_marginTop="2dp"/>
 
                 </LinearLayout>
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/card_notification"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_marginEnd="8dp"
-                    app:cardBackgroundColor="@android:color/transparent"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:layout_marginEnd="12dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="22dp"
                     app:cardElevation="0dp"
-                    app:strokeWidth="0dp"
-                    app:layout_constraintBottom_toBottomOf="@id/card_profile_image"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="#E2E8F0"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/card_profile_image"
-                    app:layout_constraintTop_toTopOf="@id/card_profile_image">
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <ImageView
                         android:id="@+id/iv_notification"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:padding="10dp"
-                        android:scaleType="fitCenter"
+                        android:padding="12dp"
                         android:src="@drawable/notification"
-                        app:tint="@color/text_dark" />
+                        app:tint="#0F172A" />
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/card_profile_image"
-                    android:layout_width="56dp"
-                    android:layout_height="56dp"
-                    android:layout_margin="4dp"
-                    app:cardCornerRadius="28dp"
-                    app:cardElevation="2dp"
-                    app:strokeWidth="1dp"
-                    app:strokeColor="#F0F0F0"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="2dp"
+                    app:strokeColor="#FFFFFF"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
@@ -107,40 +110,77 @@
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardWeather"
                 android:layout_width="match_parent"
-                android:layout_height="170dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginHorizontal="6dp"
-                app:cardCornerRadius="28dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                app:cardCornerRadius="32dp"
                 app:cardElevation="8dp"
                 app:strokeWidth="0dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/layoutWeatherBg"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/bg_weather_premium_gradient"
-                    android:padding="22dp">
+                    android:layout_height="match_parent">
+
+                    <!-- Premium Navy Overlay -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#730F172A" />
 
                     <LinearLayout
                         android:id="@+id/layout_loc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="24dp"
+                        android:background="@drawable/bg_glass_card"
+                        android:backgroundTint="#33FFFFFF"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="6dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
                         <ImageView
                             android:layout_width="14dp"
                             android:layout_height="14dp"
                             android:src="@drawable/ic_sun"
-                            app:tint="@android:color/white" />
+                            app:tint="#FFFFFF" />
                         <TextView
                             android:id="@+id/tvLocation"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="4dp"
+                            android:layout_marginStart="6dp"
                             android:text="Ujung Batu"
-                            android:textColor="@android:color/white"
+                            android:textColor="#FFFFFF"
                             android:textSize="13sp"
+                            android:fontFamily="@font/manrope_semibold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layout_update"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginTop="24dp"
+                        android:background="@drawable/bg_glass_card"
+                        android:backgroundTint="#33FFFFFF"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="6dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+                        <ImageView
+                            android:layout_width="12dp"
+                            android:layout_height="12dp"
+                            android:src="@drawable/ic_history"
+                            app:tint="#FFFFFF" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="6dp"
+                            android:text="Live"
+                            android:textColor="#FFFFFF"
+                            android:textSize="12sp"
                             android:fontFamily="@font/manrope_semibold" />
                     </LinearLayout>
 
@@ -148,10 +188,12 @@
                         android:id="@+id/tvWeatherTemp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-black"
-                        android:text="27°C"
-                        android:textColor="@android:color/white"
-                        android:textSize="48sp"
+                        android:fontFamily="@font/manrope_extrabold"
+                        android:text="30°C"
+                        android:textColor="#FFFFFF"
+                        android:textSize="56sp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="16dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/layout_loc" />
 
@@ -160,74 +202,128 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Cerah Berawan"
-                        android:textColor="#E0F2F1"
-                        android:textSize="15sp"
+                        android:textColor="#E2E8F0"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/manrope_medium"
+                        android:layout_marginStart="24dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tvWeatherTemp" />
 
-                    <!-- Info Glass Overlay -->
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/bg_glass_overlay"
-                        android:orientation="vertical"
-                        android:padding="12dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical">
-                            <ImageView
-                                android:layout_width="16dp"
-                                android:layout_height="16dp"
-                                android:src="@drawable/ic_water_drop"
-                                app:tint="@android:color/white" />
-                            <TextView
-                                android:id="@+id/tvWeatherHumidity"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="8dp"
-                                android:text="45%"
-                                android:textColor="@android:color/white"
-                                android:textSize="13sp"
-                                android:fontFamily="@font/manrope_bold" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:gravity="center_vertical">
-                            <ImageView
-                                android:layout_width="16dp"
-                                android:layout_height="16dp"
-                                android:src="@drawable/ic_sun"
-                                app:tint="@android:color/white" />
-                            <TextView
-                                android:id="@+id/tvWindSpeed"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="8dp"
-                                android:text="12 km/jam"
-                                android:textColor="@android:color/white"
-                                android:textSize="13sp"
-                                android:fontFamily="@font/manrope_bold" />
-                        </LinearLayout>
-                    </LinearLayout>
-
+                    <!-- Center 3D Icon -->
                     <ImageView
                         android:id="@+id/ivWeatherIcon3D"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_marginEnd="80dp"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_marginEnd="16dp"
                         android:src="@drawable/cerah"
-                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="@id/tvWeatherTemp"
+                        app:layout_constraintBottom_toBottomOf="@id/tvHomeWeatherCondition" />
 
+                    <!-- Bottom Cards Row -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginHorizontal="24dp"
+                        android:layout_marginBottom="24dp"
+                        android:weightSum="2"
+                        app:layout_constraintTop_toBottomOf="@id/tvHomeWeatherCondition"
+                        app:layout_constraintBottom_toBottomOf="parent">
+
+                        <!-- Kelembapan Udara Card -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/bg_glass_card"
+                            android:backgroundTint="#F8FAFC"
+                            android:padding="12dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+                            
+                            <ImageView
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:background="@drawable/bg_circle"
+                                android:backgroundTint="#EFF6FF"
+                                android:padding="8dp"
+                                android:src="@drawable/ic_water_drop"
+                                app:tint="#3B82F6" />
+                                
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_marginStart="10dp">
+                                
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Kelembapan"
+                                    android:textColor="#64748B"
+                                    android:textSize="11sp"
+                                    android:fontFamily="@font/manrope_medium" />
+
+                                <TextView
+                                    android:id="@+id/tvWeatherHumidity"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="45%"
+                                    android:textColor="#0F172A"
+                                    android:textSize="16sp"
+                                    android:fontFamily="@font/manrope_extrabold" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <!-- Kecepatan Angin Card -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="8dp"
+                            android:background="@drawable/bg_glass_card"
+                            android:backgroundTint="#F8FAFC"
+                            android:padding="12dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+                            
+                            <ImageView
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:background="@drawable/bg_circle"
+                                android:backgroundTint="#ECFDF5"
+                                android:padding="8dp"
+                                android:src="@drawable/ic_sun"
+                                app:tint="#10B981" />
+                                
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_marginStart="10dp">
+                                
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Angin"
+                                    android:textColor="#64748B"
+                                    android:textSize="11sp"
+                                    android:fontFamily="@font/manrope_medium" />
+
+                                <TextView
+                                    android:id="@+id/tvWindSpeed"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="12 km/j"
+                                    android:textColor="#0F172A"
+                                    android:textSize="16sp"
+                                    android:fontFamily="@font/manrope_extrabold" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -243,14 +339,24 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-black"
+                    android:fontFamily="@font/manrope_bold"
                     android:text="Status Tanah"
-                    android:textColor="@color/text_dark"
+                    android:textColor="#0F172A"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
 
-
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Detail"
+                    android:textColor="#3B82F6"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/manrope_bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <!-- ================= STATUS GRID ================= -->
@@ -263,118 +369,169 @@
                 android:clipChildren="false"
                 android:clipToPadding="false">
 
-                <!-- MOISTURE / KELEMBAPAN TANAH -->
+                <!-- MOISTURE / SUHU TANAH -->
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="180dp"
                     android:layout_weight="1"
-                    android:layout_margin="6dp"
-                    app:cardBackgroundColor="@android:color/white"
-                    app:cardCornerRadius="15dp"
-                    app:cardElevation="2dp"
+                    android:layout_marginEnd="8dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="28dp"
+                    app:cardElevation="0dp"
                     app:strokeWidth="1dp"
-                    app:strokeColor="#F1F5F9">
+                    app:strokeColor="#E2E8F0">
 
-                    <LinearLayout
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="20dp">
+                        android:layout_height="match_parent">
 
                         <ImageView
-                            android:layout_width="36dp"
-                            android:layout_height="36dp"
+                            android:id="@+id/iv_suhu_icon"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="20dp"
                             android:background="@drawable/bg_circle"
-                            android:backgroundTint="#EEF2FF"
-                            android:padding="8dp"
-                            android:src="@drawable/ic_water_drop"
-                            app:tint="#4F46E5" />
+                            android:backgroundTint="#ECFDF5"
+                            android:padding="12dp"
+                            android:src="@drawable/ic_thermostat"
+                            app:tint="#10B981"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginEnd="20dp"
+                            android:background="@drawable/bg_chip_light_green"
+                            android:fontFamily="@font/manrope_bold"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="4dp"
+                            android:text="Normal"
+                            android:textColor="#10B981"
+                            android:textSize="11sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"/>
+
+                        <TextView
+                            android:id="@+id/tv_suhu_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="16dp"
                             android:fontFamily="@font/manrope_medium"
-                            android:text="Suhu"
+                            android:text="Suhu Tanah"
                             android:textColor="#64748B"
-                            android:textSize="12sp" />
+                            android:textSize="13sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/iv_suhu_icon"/>
 
                         <TextView
                             android:id="@+id/suhuValue"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
+                            android:layout_marginStart="20dp"
                             android:fontFamily="@font/manrope_extrabold"
-                            android:text="30°C"
-                            android:textColor="#1E293B"
-                            android:textSize="22sp" />
+                            android:text="32°C"
+                            android:textColor="#0F172A"
+                            android:textSize="28sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_suhu_title"/>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:fontFamily="@font/manrope_bold"
-                            android:text="Normal"
-                            android:textColor="#10B981"
-                            android:textSize="12sp" />
-                    </LinearLayout>
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/bg_graph_green"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
 
-                <!-- SIGNAL / SINYAL -->
+                <!-- SIGNAL / KELEMBAPAN TANAH -->
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="180dp"
                     android:layout_weight="1"
-                    android:layout_margin="6dp"
-                    app:cardBackgroundColor="@android:color/white"
-                    app:cardCornerRadius="15dp"
-                    app:cardElevation="2dp"
+                    android:layout_marginStart="8dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="28dp"
+                    app:cardElevation="0dp"
                     app:strokeWidth="1dp"
-                    app:strokeColor="#F1F5F9">
-                    <LinearLayout
+                    app:strokeColor="#E2E8F0">
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="20dp">
+                        android:layout_height="match_parent">
                         
                         <ImageView
-                            android:layout_width="36dp"
-                            android:layout_height="36dp"
+                            android:id="@+id/iv_moisture_icon"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="20dp"
                             android:background="@drawable/bg_circle"
-                            android:backgroundTint="#EEF2FF"
-                            android:padding="8dp"
+                            android:backgroundTint="#EFF6FF"
+                            android:padding="12dp"
                             android:src="@drawable/ic_water_drop"
-                            app:tint="#3B82F6" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
-                            android:text="Kelembapan"
-                            android:textColor="#64748B"
-                            android:textSize="12sp"
-                            android:fontFamily="@font/manrope_medium" />
-
-                        <TextView
-                            android:id="@+id/kelembapanTanahValue"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="60%"
-                            android:textColor="#1E293B"
-                            android:textSize="22sp"
-                            android:fontFamily="@font/manrope_extrabold" />
+                            app:tint="#3B82F6"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"/>
 
                         <TextView
                             android:id="@+id/tvMoistureStatus"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginEnd="20dp"
+                            android:background="@drawable/bg_chip_light_blue"
+                            android:backgroundTint="#EFF6FF"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="4dp"
                             android:text="Normal"
-                            android:textColor="#10B981"
-                            android:textSize="12sp"
-                            android:fontFamily="@font/manrope_bold" />
-                    </LinearLayout>
+                            android:textColor="#3B82F6"
+                            android:textSize="11sp"
+                            android:fontFamily="@font/manrope_bold"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"/>
+
+                        <TextView
+                            android:id="@+id/tv_moisture_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="16dp"
+                            android:text="Air Tanah"
+                            android:textColor="#64748B"
+                            android:textSize="13sp"
+                            android:fontFamily="@font/manrope_medium"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/iv_moisture_icon"/>
+
+                        <TextView
+                            android:id="@+id/kelembapanTanahValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:text="60%"
+                            android:textColor="#0F172A"
+                            android:textSize="28sp"
+                            android:fontFamily="@font/manrope_extrabold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_moisture_title"/>
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/bg_graph_blue"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
 
@@ -382,7 +539,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="16dp"
                 android:orientation="horizontal"
                 android:weightSum="1"
                 android:clipChildren="false"
@@ -390,84 +547,98 @@
 
                 <!-- HUMIDITY (AIR) / KELEMBAPAN UDARA -->
                 <com.google.android.material.card.MaterialCardView
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_margin="6dp"
-                    app:cardCornerRadius="22dp"
-                    app:cardElevation="4dp"
-                    app:strokeWidth="0dp"
-                    app:cardBackgroundColor="@android:color/white">
+                    app:cardCornerRadius="28dp"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="#E2E8F0"
+                    app:cardBackgroundColor="#FFFFFF">
 
-                    <RelativeLayout
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="180dp"
-                        android:background="@drawable/bg_humidity_card">
+                        android:layout_height="wrap_content"
+                        android:padding="24dp">
 
-                        <!-- Dekorasi Lingkaran -->
-                        <View
-                            android:layout_width="140dp"
-                            android:layout_height="140dp"
-                            android:layout_alignParentEnd="true"
-                            android:layout_marginTop="-30dp"
-                            android:layout_marginEnd="-20dp"
-                            android:background="@drawable/bg_circle_transparent"/>
+                        <!-- Left Side Content -->
+                        <ImageView
+                            android:id="@+id/iv_air_humidity_icon"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:background="@drawable/bg_circle"
+                            android:backgroundTint="#EFF6FF"
+                            android:padding="12dp"
+                            android:src="@drawable/ic_cloud"
+                            app:tint="#3B82F6"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"/>
 
-                        <!-- Dekorasi Bawah -->
-                        <View
-                            android:layout_width="180dp"
-                            android:layout_height="80dp"
-                            android:layout_alignParentBottom="true"
-                            android:layout_alignParentEnd="true"
-                            android:background="@drawable/bg_wave_purple"/>
+                        <TextView
+                            android:id="@+id/tv_air_humidity_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:text="Kelembapan Udara"
+                            android:textColor="#64748B"
+                            android:textSize="13sp"
+                            android:fontFamily="@font/manrope_medium"
+                            app:layout_constraintStart_toEndOf="@id/iv_air_humidity_icon"
+                            app:layout_constraintTop_toTopOf="@id/iv_air_humidity_icon"
+                            app:layout_constraintBottom_toTopOf="@id/kelembapanUdaraValue"
+                            app:layout_constraintVertical_chainStyle="packed"/>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:padding="20dp">
+                        <TextView
+                            android:id="@+id/kelembapanUdaraValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:text="45%"
+                            android:textColor="#0F172A"
+                            android:textSize="28sp"
+                            android:fontFamily="@font/manrope_extrabold"
+                            app:layout_constraintStart_toEndOf="@id/iv_air_humidity_icon"
+                            app:layout_constraintTop_toBottomOf="@id/tv_air_humidity_title"
+                            app:layout_constraintBottom_toBottomOf="@id/iv_air_humidity_icon"/>
 
-                            <!-- Icon -->
-                            <ImageView
-                                android:layout_width="48dp"
-                                android:layout_height="48dp"
-                                android:background="@drawable/bg_icon_purple"
-                                android:padding="10dp"
-                                android:src="@drawable/ic_cloud"
-                                app:tint="#7C3AED" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="Kondisi kelembapan udara berada dalam batas optimal."
+                            android:textColor="#94A3B8"
+                            android:textSize="12sp"
+                            android:fontFamily="@font/manrope_medium"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="16dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/progress_humidity"
+                            app:layout_constraintTop_toBottomOf="@id/iv_air_humidity_icon"/>
 
-                            <!-- Title -->
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="14dp"
-                                android:text="Kelembapan Udara"
-                                android:textColor="#64748B"
-                                android:textSize="13sp"
-                                android:fontFamily="@font/manrope_medium" />
+                        <!-- Right Side Progress -->
+                        <ProgressBar
+                            android:id="@+id/progress_humidity"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            android:max="100"
+                            android:progress="45"
+                            android:progressDrawable="@drawable/bg_humidity_progress"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
 
-                            <!-- Value -->
-                            <TextView
-                                android:id="@+id/kelembapanUdaraValue"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="6dp"
-                                android:text="45%"
-                                android:textColor="#0F172A"
-                                android:textSize="34sp"
-                                android:fontFamily="@font/manrope_extrabold" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Optimal"
+                            android:textColor="#3B82F6"
+                            android:textSize="13sp"
+                            android:fontFamily="@font/manrope_bold"
+                            app:layout_constraintStart_toStartOf="@id/progress_humidity"
+                            app:layout_constraintEnd_toEndOf="@id/progress_humidity"
+                            app:layout_constraintTop_toTopOf="@id/progress_humidity"
+                            app:layout_constraintBottom_toBottomOf="@id/progress_humidity"/>
 
-                            <!-- Status -->
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="6dp"
-                                android:text="Normal"
-                                android:textColor="#10B981"
-                                android:textSize="14sp"
-                                android:fontFamily="@font/manrope_bold" />
-                        </LinearLayout>
-                    </RelativeLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
 
@@ -477,28 +648,26 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="16dp"
-                android:fontFamily="sans-serif-black"
+                android:fontFamily="@font/manrope_bold"
                 android:text="Kontrol Perangkat"
-                android:textColor="@color/text_dark"
+                android:textColor="#0F172A"
                 android:textSize="18sp" />
 
             <!-- POMPA -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="100dp"
-                android:layout_marginHorizontal="6dp"
                 app:cardBackgroundColor="#FFFFFF"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="1dp"
+                app:cardCornerRadius="28dp"
+                app:cardElevation="0dp"
                 app:strokeWidth="1dp"
-                app:strokeColor="#F6F6F6">
+                app:strokeColor="#E2E8F0">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="22dp">
+                    android:padding="24dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -510,10 +679,10 @@
                             android:layout_width="48dp"
                             android:layout_height="48dp"
                             android:background="@drawable/bg_circle"
-                            android:backgroundTint="#F0F4F8"
+                            android:backgroundTint="#F8FAFC"
                             android:padding="12dp"
                             android:src="@drawable/ic_settings"
-                            app:tint="#8A8FA3" />
+                            app:tint="#64748B" />
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -526,17 +695,18 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Mode Operasi"
-                                android:textColor="#8A8FA3"
-                                android:textSize="13sp" />
+                                android:textColor="#64748B"
+                                android:textSize="13sp"
+                                android:fontFamily="@font/manrope_medium"/>
 
                             <TextView
                                 android:id="@+id/tvModeStatus"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Otomatis"
-                                android:textColor="#1D2433"
-                                android:textSize="15sp"
-                                android:fontFamily="sans-serif-bold"/>
+                                android:textColor="#0F172A"
+                                android:textSize="16sp"
+                                android:fontFamily="@font/manrope_bold"/>
 
                         </LinearLayout>
 
@@ -545,8 +715,8 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_marginVertical="16dp"
-                        android:background="#F1F3F7" />
+                        android:layout_marginVertical="20dp"
+                        android:background="#F1F5F9" />
 
                     <!-- Baris Kontrol Manual -->
                     <LinearLayout
@@ -561,10 +731,10 @@
                             android:layout_width="48dp"
                             android:layout_height="48dp"
                             android:background="@drawable/bg_circle"
-                            android:backgroundTint="#ECFFF3"
-                            android:padding="10dp"
+                            android:backgroundTint="#ECFDF5"
+                            android:padding="12dp"
                             android:src="@drawable/ic_water_drop"
-                            app:tint="#32C766" />
+                            app:tint="#10B981" />
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -577,9 +747,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Saklar Pompa"
-                                android:textColor="#1D2433"
-                                android:textSize="15sp"
-                                android:fontFamily="sans-serif-bold"/>
+                                android:textColor="#0F172A"
+                                android:textSize="16sp"
+                                android:fontFamily="@font/manrope_bold"/>
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -590,8 +760,8 @@
 
                                 <View
                                     android:id="@+id/viewStatusDot"
-                                    android:layout_width="7dp"
-                                    android:layout_height="7dp"
+                                    android:layout_width="8dp"
+                                    android:layout_height="8dp"
                                     android:background="@drawable/dot_green" />
 
                                 <TextView
@@ -600,8 +770,9 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="6dp"
                                     android:text="Mati"
-                                    android:textColor="#8A8FA3"
-                                    android:textSize="13sp" />
+                                    android:textColor="#64748B"
+                                    android:textSize="13sp"
+                                    android:fontFamily="@font/manrope_medium"/>
 
                             </LinearLayout>
 
@@ -621,7 +792,5 @@
             </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
-
     </androidx.core.widget.NestedScrollView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

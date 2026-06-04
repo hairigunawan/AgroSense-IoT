@@ -34,6 +34,10 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var biometricPrompt: BiometricPrompt
     private lateinit var promptInfo: BiometricPrompt.PromptInfo
     private lateinit var googleSignInClient: GoogleSignInClient
+    private lateinit var progressBar: android.widget.ProgressBar
+    private lateinit var btnLogin: Button
+    private lateinit var btnGoogle: Button
+    private lateinit var btnBiometric: ImageButton
 
     private val googleSignInLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == RESULT_OK) {
@@ -42,9 +46,28 @@ class LoginActivity : AppCompatActivity() {
                 val account = task.getResult(ApiException::class.java)!!
                 firebaseAuthWithGoogle(account.idToken!!)
             } catch (e: ApiException) {
-                Log.w(TAG, "Google sign in failed", e)
+                setLoading(false)
+                Log.w(TAG, "Google sign in failed with ApiException", e)
                 Toast.makeText(this, "Login Google gagal: ${e.message}", Toast.LENGTH_SHORT).show()
             }
+        } else {
+            setLoading(false)
+            Log.w(TAG, "Google sign in canceled or failed. Result code: ${result.resultCode}")
+            Toast.makeText(this, "Login Google dibatalkan/gagal (Kode: ${result.resultCode})", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun setLoading(isLoading: Boolean) {
+        if (isLoading) {
+            progressBar.visibility = View.VISIBLE
+            btnLogin.isEnabled = false
+            btnGoogle.isEnabled = false
+            btnBiometric.isEnabled = false
+        } else {
+            progressBar.visibility = View.GONE
+            btnLogin.isEnabled = true
+            btnGoogle.isEnabled = true
+            btnBiometric.isEnabled = true
         }
     }
 
@@ -53,6 +76,10 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         auth = Firebase.auth
+        progressBar = findViewById(R.id.pb_login)
+        btnLogin = findViewById(R.id.btn_login)
+        btnGoogle = findViewById(R.id.btn_google_login)
+        btnBiometric = findViewById(R.id.btn_biometric)
 
         // Jika user sudah login dan terverifikasi, langsung ke MainActivity
         if (auth.currentUser != null && auth.currentUser!!.isEmailVerified) {
@@ -70,22 +97,13 @@ class LoginActivity : AppCompatActivity() {
 
         val etEmail = findViewById<EditText>(R.id.et_email_login)
         val etPassword = findViewById<EditText>(R.id.et_password_login)
-        val btnLogin = findViewById<Button>(R.id.btn_login)
-        val btnBiometric = findViewById<ImageButton>(R.id.btn_biometric)
-        val btnGoogle = findViewById<Button>(R.id.btn_google_login)
         val tvRegister = findViewById<TextView>(R.id.tv_go_to_register)
         val tvForgotPassword = findViewById<TextView>(R.id.tv_forgot_password)
 
-        // ... (Spannable code remains the same)
-
         btnGoogle.setOnClickListener {
-            // Force revoke access and sign out from Google to show account picker
-            googleSignInClient.revokeAccess().addOnCompleteListener {
-                googleSignInClient.signOut().addOnCompleteListener {
-                    val signInIntent = googleSignInClient.signInIntent
-                    googleSignInLauncher.launch(signInIntent)
-                }
-            }
+            setLoading(true)
+            val signInIntent = googleSignInClient.signInIntent
+            googleSignInLauncher.launch(signInIntent)
         }
 
         // ... (Biometric setup remains the same)
@@ -163,8 +181,10 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            setLoading(true)
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
+                    setLoading(false)
                     if (task.isSuccessful) {
                         val user = auth.currentUser
                         if (user?.isEmailVerified == true) {

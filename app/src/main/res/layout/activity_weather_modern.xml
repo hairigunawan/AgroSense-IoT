@@ -45,6 +45,7 @@
         android:layout_marginEnd="-50dp"
         android:layout_marginTop="120dp" />
 
+    <!-- Rain Particles Layer -->
     <FrameLayout
         android:id="@+id/flRain"
         android:layout_width="0dp"
@@ -55,11 +56,38 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <View android:id="@+id/rain1" android:layout_width="2dp" android:layout_height="80dp" android:background="#66FFFFFF" android:layout_marginStart="80dp" android:layout_marginTop="-80dp" />
-        <View android:id="@+id/rain2" android:layout_width="1.5dp" android:layout_height="60dp" android:background="#44FFFFFF" android:layout_marginStart="160dp" android:layout_marginTop="-150dp"/>
-        <View android:id="@+id/rain3" android:layout_width="2.5dp" android:layout_height="90dp" android:background="#55FFFFFF" android:layout_marginStart="240dp" android:layout_marginTop="-50dp"/>
-        <View android:id="@+id/rain4" android:layout_width="1dp" android:layout_height="50dp" android:background="#33FFFFFF" android:layout_marginStart="320dp" android:layout_marginTop="-100dp"/>
+        <View android:id="@+id/rain1" android:layout_width="2dp" android:layout_height="80dp" android:background="#66FFFFFF" android:layout_marginStart="80dp" android:layout_marginTop="-80dp" android:rotation="15"/>
+        <View android:id="@+id/rain2" android:layout_width="1.5dp" android:layout_height="60dp" android:background="#44FFFFFF" android:layout_marginStart="160dp" android:layout_marginTop="-150dp" android:rotation="15"/>
+        <View android:id="@+id/rain3" android:layout_width="2.5dp" android:layout_height="90dp" android:background="#55FFFFFF" android:layout_marginStart="240dp" android:layout_marginTop="-50dp" android:rotation="15"/>
+        <View android:id="@+id/rain4" android:layout_width="1dp" android:layout_height="50dp" android:background="#33FFFFFF" android:layout_marginStart="320dp" android:layout_marginTop="-100dp" android:rotation="15"/>
     </FrameLayout>
+
+    <!-- Snow Particles Layer -->
+    <FrameLayout
+        android:id="@+id/flSnow"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0.0"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        
+        <ImageView android:layout_width="12dp" android:layout_height="12dp" android:src="@drawable/bg_circle" app:tint="#FFFFFF" android:layout_marginStart="50dp" android:alpha="0.8"/>
+        <ImageView android:layout_width="8dp" android:layout_height="8dp" android:src="@drawable/bg_circle" app:tint="#FFFFFF" android:layout_marginStart="150dp" android:layout_marginTop="100dp" android:alpha="0.5"/>
+        <ImageView android:layout_width="14dp" android:layout_height="14dp" android:src="@drawable/bg_circle" app:tint="#FFFFFF" android:layout_marginStart="250dp" android:layout_marginTop="50dp" android:alpha="0.7"/>
+        <ImageView android:layout_width="10dp" android:layout_height="10dp" android:src="@drawable/bg_circle" app:tint="#FFFFFF" android:layout_marginStart="320dp" android:layout_marginTop="150dp" android:alpha="0.6"/>
+    </FrameLayout>
+
+    <!-- Storm Flash Layer -->
+    <View
+        android:id="@+id/vStormFlash"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:alpha="0.0"
+        android:visibility="gone"/>
 
     <!-- Main Scroll -->
     <androidx.core.widget.NestedScrollView
@@ -101,7 +129,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:text="Tungkaran"
+                    tools:text="Tungkaran"
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -113,7 +141,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:text="27°"
+                tools:text="27°"
+                android:text="--°"
                 android:textColor="@color/white"
                 android:textSize="100sp"
                 android:textStyle="bold"
@@ -126,7 +155,8 @@
                 android:id="@+id/tvCondition"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Berawan"
+                tools:text="Berawan"
+                android:text="--"
                 android:textColor="@color/white"
                 android:textSize="24sp"
                 app:layout_constraintTop_toBottomOf="@id/tvMainTemp"
@@ -139,7 +169,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="T: 32°  R: 24°"
+                tools:text="T: 32°  R: 24°"
+                android:text="--"
                 android:textColor="@color/text_secondary"
                 android:textSize="16sp"
                 app:layout_constraintTop_toBottomOf="@id/tvCondition"
@@ -152,7 +183,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="Terasa seperti 32°"
+                tools:text="Terasa seperti 32°"
+                android:text="--"
                 android:textColor="@color/text_secondary"
                 android:textSize="14sp"
                 app:layout_constraintTop_toBottomOf="@id/tvHighLow"
@@ -168,7 +200,8 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="48dp"
                 android:gravity="center"
-                android:text="Hari yang cukup lembap dengan potensi hujan ringan di sore hari."
+                tools:text="Hari yang cukup lembap dengan potensi hujan ringan di sore hari."
+                android:text=""
                 android:textColor="@color/text_secondary"
                 android:textSize="12sp"
                 app:layout_constraintTop_toBottomOf="@id/tvFeelsLike"
@@ -193,7 +226,8 @@
                     android:id="@+id/tvRainTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Hujan Segera Turun"
+                    tools:text="Hujan Segera Turun"
+                android:text="--"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -205,7 +239,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="Sekitar 15 menit lagi"
+                    tools:text="Sekitar 15 menit lagi"
+                android:text="--"
                     android:textColor="@color/text_secondary"
                     android:textSize="12sp"
                     app:layout_constraintTop_toBottomOf="@id/tvRainTitle"
@@ -215,7 +250,8 @@
                     android:id="@+id/tvRainPercent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="42%"
+                    tools:text="42%"
+                android:text="--%"
                     android:textColor="@color/white"
                     android:textSize="32sp"
                     android:textStyle="bold"

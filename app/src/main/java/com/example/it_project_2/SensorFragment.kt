@@ -7,16 +7,16 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.it_project_2.databinding.FragmentSettingsBinding
+import com.example.it_project_2.databinding.FragmentSensorBinding
 import com.example.it_project_2.model.PengaturanModel
 import com.example.it_project_2.viewmodel.MainViewModel
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-class SettingsFragment : Fragment() {
+class SensorFragment : Fragment() {
 
-    private var _binding: FragmentSettingsBinding? = null
+    private var _binding: FragmentSensorBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: MainViewModel
 
@@ -24,7 +24,7 @@ class SettingsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentSettingsBinding.inflate(inflater, container, false)
+        _binding = FragmentSensorBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -58,7 +58,7 @@ class SettingsFragment : Fragment() {
             simpanKeFirebase()
         }
 
-        binding.btnBackSettings.setOnClickListener {
+        binding.btnBack.setOnClickListener {
             navigateToHome()
         }
     }

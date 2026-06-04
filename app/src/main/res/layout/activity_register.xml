@@ -160,6 +160,17 @@
             app:iconTint="@null"
             app:layout_constraintTop_toBottomOf="@id/btn_register" />
 
+        <ProgressBar
+            android:id="@+id/pb_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:indeterminateTint="@color/green_primary"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
         <!-- Teks Login -->
         <LinearLayout
             android:id="@+id/ll_footer"
