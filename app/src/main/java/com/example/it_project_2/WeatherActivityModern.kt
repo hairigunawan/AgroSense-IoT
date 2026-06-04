@@ -162,7 +162,7 @@ class WeatherActivityModern : AppCompatActivity() {
             .build()
 
         val weatherApi = retrofit.create(WeatherApi::class.java)
-        val call = weatherApi.getForecast(WEATHER_API_KEY, query, 1, "no", "no", "id")
+        val call = weatherApi.getForecast(WEATHER_API_KEY, query, 3, "no", "no", "id")
 
         call.enqueue(object : Callback<WeatherApiResponse> {
             override fun onResponse(call: Call<WeatherApiResponse>, response: Response<WeatherApiResponse>) {
@@ -283,5 +283,46 @@ class WeatherActivityModern : AppCompatActivity() {
         
         // Description
         binding.tvDescription.text = "Kondisi saat ini: ${data.current.condition.text} dengan suhu $currentTemp°C."
+
+        // Daily Forecast update
+        binding.llDailyContainer.removeAllViews()
+        val dateFormat = java.text.SimpleDateFormat("EEEE", java.util.Locale("id", "ID"))
+        val dateParser = java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault())
+
+        data.forecast.forecastDay.forEach { dailyData ->
+            val dayView = layoutInflater.inflate(R.layout.item_daily_modern, binding.llDailyContainer, false)
+            
+            val tvDay = dayView.findViewById<android.widget.TextView>(R.id.tvDay)
+            val ivDailyIcon = dayView.findViewById<android.widget.ImageView>(R.id.ivDailyIcon)
+            val tvDailyRain = dayView.findViewById<android.widget.TextView>(R.id.tvDailyRain)
+            val tvDailyTempRange = dayView.findViewById<android.widget.TextView>(R.id.tvDailyTempRange)
+
+            if (dailyData.date != null) {
+                try {
+                    val date = dateParser.parse(dailyData.date)
+                    if (date != null) {
+                        tvDay.text = dateFormat.format(date)
+                    } else {
+                        tvDay.text = "Hari"
+                    }
+                } catch (e: Exception) {
+                    tvDay.text = "Hari"
+                }
+            }
+
+            val dayInfo = dailyData.day
+            if (dayInfo != null) {
+                tvDailyRain.text = "${dayInfo.dailyChanceOfRain}%"
+                tvDailyTempRange.text = "${dayInfo.maxTempC.roundToInt()}° / ${dayInfo.minTempC.roundToInt()}°"
+                
+                if (dayInfo.condition != null && dayInfo.condition.icon != null) {
+                    com.bumptech.glide.Glide.with(this@WeatherActivityModern)
+                        .load(dayInfo.condition.icon)
+                        .into(ivDailyIcon)
+                }
+            }
+
+            binding.llDailyContainer.addView(dayView)
+        }
     }
 }

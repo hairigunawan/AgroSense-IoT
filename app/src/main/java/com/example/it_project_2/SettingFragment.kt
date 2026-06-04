@@ -10,14 +10,15 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.it_project_2.databinding.FragmentProfileBinding
+import com.bumptech.glide.Glide
+import com.example.it_project_2.databinding.FragmentSettingBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.firestore.FirebaseFirestore
 
-class ProfileFragment : Fragment() {
+class SettingFragment : Fragment() {
 
-    private var _binding: FragmentProfileBinding? = null
+    private var _binding: FragmentSettingBinding? = null
     private val binding get() = _binding!!
 
     private val db = FirebaseFirestore.getInstance()
@@ -27,7 +28,7 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentProfileBinding.inflate(inflater, container, false)
+        _binding = FragmentSettingBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -35,6 +36,10 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         loadUserProfile()
+
+        view.findViewById<View>(R.id.btnBack).setOnClickListener {
+            navigateToHome()
+        }
 
         // Klik area profil untuk edit nama
         binding.cardProfileImage.setOnClickListener {
@@ -133,7 +138,19 @@ class ProfileFragment : Fragment() {
 
         if (currentUser != null) {
             binding.tvProfileEmail.text = currentUser.email
-            binding.ivProfile.setImageResource(R.drawable.user)
+            
+            // Load foto profil dari URL (Google Auth)
+            val photoUrl = currentUser.photoUrl
+            if (photoUrl != null) {
+                Glide.with(this)
+                    .load(photoUrl)
+                    .circleCrop()
+                    .placeholder(R.drawable.user)
+                    .error(R.drawable.user)
+                    .into(binding.ivProfile)
+            } else {
+                binding.ivProfile.setImageResource(R.drawable.user)
+            }
 
             val authName = currentUser.displayName
             if (!authName.isNullOrEmpty()) {
@@ -148,6 +165,11 @@ class ProfileFragment : Fragment() {
                     }
             }
         }
+    }
+
+    private fun navigateToHome() {
+        val bottomNav = activity?.findViewById<com.google.android.material.bottomnavigation.BottomNavigationView>(R.id.bottom_navigation)
+        bottomNav?.selectedItemId = R.id.navigation_home
     }
 
     override fun onDestroyView() {

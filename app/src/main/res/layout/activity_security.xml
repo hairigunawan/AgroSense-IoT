@@ -3,23 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F8F9FA"
-    android:orientation="vertical">
+    android:background="#F4F6F9"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true">
 
     <!-- Header -->
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
         android:background="@color/green_kangkung"
-        android:paddingHorizontal="16dp"
-        android:paddingTop="20dp"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="24dp"
         android:paddingBottom="24dp">
 
         <ImageView
             android:id="@+id/btn_back_security"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:layout_centerVertical="true"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:padding="4dp"
             android:src="@drawable/ic_arrow_back"
@@ -28,12 +30,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_marginStart="16dp"
             android:fontFamily="@font/manrope_bold"
             android:text="Keamanan"
             android:textColor="@color/white"
             android:textSize="20sp" />
-    </RelativeLayout>
+    </LinearLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -43,21 +45,36 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="20dp">
+
+            <!-- Section: Akun -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Keamanan Akun"
+                android:textColor="#9E9E9E"
+                android:textSize="13sp"
+                android:fontFamily="@font/manrope_bold"
+                android:textAllCaps="true"
+                android:layout_marginStart="4dp"
+                android:layout_marginBottom="8dp"/>
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="16dp"
+                android:layout_marginBottom="24dp"
+                app:cardCornerRadius="20dp"
                 app:cardElevation="0dp"
-                app:strokeColor="#F0F0F0"
+                app:cardBackgroundColor="@color/white"
+                app:strokeColor="#EAEAEA"
                 app:strokeWidth="1dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="8dp">
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp">
 
                     <!-- Ubah Password -->
                     <LinearLayout
@@ -65,36 +82,44 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
                         android:gravity="center_vertical"
                         android:padding="16dp">
 
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/password"
-                            app:tint="@color/green_kangkung" />
+                        <FrameLayout
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/bg_icon_circle">
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/password"
+                                app:tint="@color/green_kangkung" />
+                        </FrameLayout>
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
                             android:layout_weight="1"
-                            android:fontFamily="@font/manrope_bold"
+                            android:fontFamily="@font/manrope_semibold"
                             android:text="Ubah Password"
                             android:textColor="@color/text_dark"
-                            android:textSize="14sp" />
+                            android:textSize="15sp" />
 
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:src="@drawable/ic_chevron_right"
-                            app:tint="@color/text_light" />
+                            app:tint="#BDBDBD" />
                     </LinearLayout>
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginStart="72dp"
                         android:background="#F0F0F0" />
 
                     <!-- Verifikasi Email -->
@@ -103,39 +128,75 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
                         android:gravity="center_vertical"
                         android:padding="16dp">
 
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/email"
-                            app:tint="@color/green_kangkung" />
+                        <FrameLayout
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/bg_icon_circle">
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/email"
+                                app:tint="@color/green_kangkung" />
+                        </FrameLayout>
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
                             android:layout_weight="1"
-                            android:fontFamily="@font/manrope_bold"
+                            android:fontFamily="@font/manrope_semibold"
                             android:text="Verifikasi Email"
                             android:textColor="@color/text_dark"
-                            android:textSize="14sp" />
+                            android:textSize="15sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Terverifikasi"
-                            android:textColor="@color/green_primary"
+                            android:fontFamily="@font/manrope_bold"
+                            android:textColor="@color/green_kangkung"
+                            android:background="#E8F5E9"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="4dp"
                             android:textSize="12sp"
-                            android:layout_marginEnd="8dp" />
+                            android:layout_marginEnd="4dp" />
                     </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginHorizontal="16dp"
-                        android:background="#F0F0F0" />
+            <!-- Section: Perangkat & Privasi -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Perangkat &amp; Akses"
+                android:textColor="#9E9E9E"
+                android:textSize="13sp"
+                android:fontFamily="@font/manrope_bold"
+                android:textAllCaps="true"
+                android:layout_marginStart="4dp"
+                android:layout_marginBottom="8dp"/>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="@color/white"
+                app:strokeColor="#EAEAEA"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp">
 
                     <!-- Login 1 Perangkat -->
                     <LinearLayout
@@ -144,11 +205,17 @@
                         android:gravity="center_vertical"
                         android:padding="16dp">
 
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/microprocessor"
-                            app:tint="@color/green_kangkung" />
+                        <FrameLayout
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/bg_icon_circle">
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/microprocessor"
+                                app:tint="@color/green_kangkung" />
+                        </FrameLayout>
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -160,29 +227,32 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/manrope_bold"
+                                android:fontFamily="@font/manrope_semibold"
                                 android:text="Batasi 1 Perangkat"
                                 android:textColor="@color/text_dark"
-                                android:textSize="14sp" />
+                                android:textSize="15sp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Hanya login di satu perangkat"
-                                android:textColor="@color/text_light"
-                                android:textSize="11sp" />
+                                android:fontFamily="@font/manrope_medium"
+                                android:textColor="#757575"
+                                android:textSize="12sp" />
                         </LinearLayout>
 
                         <com.google.android.material.materialswitch.MaterialSwitch
                             android:id="@+id/switch_limit_device"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            app:thumbTint="@color/white"
+                            app:trackTint="@color/green_kangkung" />
                     </LinearLayout>
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginStart="72dp"
                         android:background="#F0F0F0" />
 
                     <!-- Fingerprint -->
@@ -192,11 +262,17 @@
                         android:gravity="center_vertical"
                         android:padding="16dp">
 
-                        <ImageView
-                            android:layout_width="29dp"
-                            android:layout_height="29dp"
-                            android:src="@drawable/fingerprint"
-                            app:tint="@color/green_kangkung" />
+                        <FrameLayout
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/bg_icon_circle">
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/fingerprint"
+                                app:tint="@color/green_kangkung" />
+                        </FrameLayout>
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -208,29 +284,42 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/manrope_bold"
-                                android:text="Sidik Jari"
+                                android:fontFamily="@font/manrope_semibold"
+                                android:text="Kunci Sidik Jari"
                                 android:textColor="@color/text_dark"
-                                android:textSize="14sp" />
+                                android:textSize="15sp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Aktifkan kunci biometrik"
-                                android:textColor="@color/text_light"
-                                android:textSize="11sp" />
+                                android:text="Gunakan biometrik untuk masuk"
+                                android:fontFamily="@font/manrope_medium"
+                                android:textColor="#757575"
+                                android:textSize="12sp" />
                         </LinearLayout>
 
                         <com.google.android.material.materialswitch.MaterialSwitch
                             android:id="@+id/switch_fingerprint"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:checked="true" />
+                            android:checked="true"
+                            app:thumbTint="@color/white"
+                            app:trackTint="@color/green_kangkung" />
                     </LinearLayout>
 
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Melindungi data Anda adalah prioritas kami. Semua informasi yang tersimpan dienkripsi secara aman."
+                android:fontFamily="@font/manrope_medium"
+                android:textColor="#BDBDBD"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:lineSpacingExtra="4dp"/>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

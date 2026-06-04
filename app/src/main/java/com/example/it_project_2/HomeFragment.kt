@@ -170,7 +170,7 @@ class HomeFragment : Fragment() {
 
         ivProfile.setOnClickListener {
             val navView = requireActivity().findViewById<com.google.android.material.bottomnavigation.BottomNavigationView>(R.id.bottom_navigation)
-            navView?.selectedItemId = R.id.navigation_profile
+            navView?.selectedItemId = R.id.navigation_settings
         }
 
         view.findViewById<View>(R.id.cardWeather)?.setOnClickListener {

@@ -42,7 +42,7 @@ class HistoryFragment : Fragment() {
         adapter = HistoryAdapter()
         rvHistory.adapter = adapter
 
-        view.findViewById<View>(R.id.btnBackHistory).setOnClickListener {
+        view.findViewById<View>(R.id.btnBack).setOnClickListener {
             navigateToHome()
         }
 

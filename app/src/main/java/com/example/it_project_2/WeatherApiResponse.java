@@ -70,10 +70,13 @@ public class WeatherApiResponse {
     }
 
     public static class ForecastDay {
+        @SerializedName("date")
+        private String date;
         @SerializedName("day")
         private Day day;
         @SerializedName("hour")
         private List<Hour> hour;
+        public String getDate() { return date; }
         public Day getDay() { return day; }
         public List<Hour> getHour() { return hour; }
     }
@@ -83,8 +86,15 @@ public class WeatherApiResponse {
         private double maxTempC;
         @SerializedName("mintemp_c")
         private double minTempC;
+        @SerializedName("condition")
+        private Condition condition;
+        @SerializedName("daily_chance_of_rain")
+        private int dailyChanceOfRain;
+
         public double getMaxTempC() { return maxTempC; }
         public double getMinTempC() { return minTempC; }
+        public Condition getCondition() { return condition; }
+        public int getDailyChanceOfRain() { return dailyChanceOfRain; }
     }
 
     public static class Hour {

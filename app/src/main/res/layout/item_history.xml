@@ -1,37 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="12dp"
+    android:layout_marginHorizontal="4dp"
     app:cardBackgroundColor="@color/white"
-    app:cardCornerRadius="20dp"
+    app:cardCornerRadius="16dp"
     app:cardElevation="0dp"
     app:strokeWidth="1dp"
-    app:strokeColor="#F0F0F0">
+    app:strokeColor="#EAEAEA">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="20dp">
 
+        <!-- Baris Atas: Waktu & Status Pompa -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:layout_marginBottom="12dp">
+            android:layout_marginBottom="16dp">
 
-            <TextView
-                android:id="@+id/tvWaktu"
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="12 Mei 2026, 10:00 WIB"
-                android:textColor="@color/text_light"
-                android:textSize="12sp"
-                android:fontFamily="@font/manrope_semibold" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/time"
+                    app:tint="#BDBDBD"/>
+                <TextView
+                    android:id="@+id/tvWaktu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    tools:text="12 Mei 2026, 10:00 WIB"
+                    android:textColor="#757575"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/manrope_medium" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/tvPompaRiwayat"
@@ -40,19 +55,27 @@
                 android:background="@drawable/bg_badge_green"
                 android:paddingHorizontal="10dp"
                 android:paddingVertical="4dp"
-                android:text="AKTIF"
+                tools:text="Pompa Aktif"
                 android:textColor="@color/white"
-                android:textSize="10sp"
-                android:fontFamily="@font/manrope_bold"
-                android:textAllCaps="true" />
+                android:textSize="11sp"
+                android:fontFamily="@font/manrope_bold" />
         </LinearLayout>
 
+        <!-- Garis Pemisah Tipis -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#F4F4F4"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Baris Bawah: Sensor Suhu & Kelembapan -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:baselineAligned="false"
             android:orientation="horizontal">
 
+            <!-- Sensor Suhu -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -61,40 +84,48 @@
                 android:orientation="horizontal">
 
                 <FrameLayout
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:background="@drawable/bg_icon_circle">
                     <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:layout_gravity="center"
                         android:src="@drawable/ic_thermostat"
-                        app:tint="@color/green_primary" />
+                        app:tint="@color/green_kangkung" />
                 </FrameLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="12dp"
                     android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Suhu"
-                        android:textColor="@color/text_light"
-                        android:textSize="10sp"
+                        android:text="Suhu Udara"
+                        android:textColor="#9E9E9E"
+                        android:textSize="11sp"
                         android:fontFamily="@font/manrope_medium" />
                     <TextView
                         android:id="@+id/tvSuhuRiwayat"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="28.5°C"
+                        tools:text="28.5°C"
                         android:textColor="@color/text_dark"
-                        android:textSize="14sp"
+                        android:textSize="16sp"
                         android:fontFamily="@font/manrope_bold" />
                 </LinearLayout>
             </LinearLayout>
 
+            <!-- Garis Vertikal Pemisah -->
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#F4F4F4"
+                android:layout_marginHorizontal="16dp"/>
+
+            <!-- Sensor Kelembapan -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -103,36 +134,36 @@
                 android:orientation="horizontal">
 
                 <FrameLayout
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:background="@drawable/bg_icon_circle">
                     <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:layout_gravity="center"
                         android:src="@drawable/ic_water_drop"
-                        app:tint="@color/green_primary" />
+                        app:tint="@color/green_kangkung" />
                 </FrameLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="12dp"
                     android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Kelembapan"
-                        android:textColor="@color/text_light"
-                        android:textSize="10sp"
+                        android:textColor="#9E9E9E"
+                        android:textSize="11sp"
                         android:fontFamily="@font/manrope_medium" />
                     <TextView
                         android:id="@+id/tvKelembapanRiwayat"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="75%"
+                        tools:text="75%"
                         android:textColor="@color/text_dark"
-                        android:textSize="14sp"
+                        android:textSize="16sp"
                         android:fontFamily="@font/manrope_bold" />
                 </LinearLayout>
             </LinearLayout>
