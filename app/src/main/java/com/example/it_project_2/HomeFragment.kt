@@ -104,7 +104,8 @@ class HomeFragment : Fragment() {
         setupProfileAndWeather(view)
         observeViewModel()
 
-        switchPompa.setOnCheckedChangeListener { _, isChecked ->
+        switchPompa.setOnClickListener {
+            val isChecked = switchPompa.isChecked
             viewModel.setPompa(isChecked)
         }
     }
