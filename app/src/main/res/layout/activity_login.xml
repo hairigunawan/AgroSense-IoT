@@ -170,22 +170,14 @@
             app:layout_constraintEnd_toEndOf="parent">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/manrope_regular"
-                android:text="Belum punya akun? "
-                android:textColor="@color/text_light" />
-
-            <TextView
                 android:id="@+id/tv_go_to_register"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" Daftar sekarang"
-                android:textColor="@color/green_button"
-                android:textStyle="bold"
-                android:textSize="14sp"
-                android:paddingStart="4dp" />
+                android:fontFamily="@font/manrope_regular"
+                android:text="Belum punya akun? Daftar sekarang"
+                android:textColor="@color/text_light" />
         </LinearLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
