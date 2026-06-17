@@ -47,13 +47,7 @@ class HistoryFragment : Fragment() {
         }
 
         // --- INJECT DUMMY DATA LANGSUNG ---
-        val dummyData = listOf(
-            RiwayatModel("1", "28 Mei 2026 08:00", 28.5f, 65, true),
-            RiwayatModel("2", "27 Mei 2026 18:30", 29.1f, 50, false),
-            RiwayatModel("3", "27 Mei 2026 07:15", 27.8f, 70, true),
-            RiwayatModel("4", "26 Mei 2026 17:45", 30.2f, 45, false),
-            RiwayatModel("5", "26 Mei 2026 08:10", 28.0f, 60, true)
-        )
+        val dummyData = listOf<RiwayatModel>()
         
         tvEmptyState.visibility = View.GONE
         rvHistory.visibility = View.VISIBLE
@@ -63,7 +57,7 @@ class HistoryFragment : Fragment() {
         // Tetap observe firebase. Jika firebase mengirim data, maka akan menimpa dummy
         viewModel.riwayatData.observe(viewLifecycleOwner) { list ->
             progressBar.visibility = View.GONE
-            if (list.isNotEmpty()) {
+            if (list != null && list.isNotEmpty()) {
                 adapter.setHistoryList(list)
             }
         }

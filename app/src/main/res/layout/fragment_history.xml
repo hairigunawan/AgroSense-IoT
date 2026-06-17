@@ -9,7 +9,7 @@
     android:clipToPadding="false"
     android:fitsSystemWindows="true">
 
-    <!-- Header Minimalis -->
+    <!-- Header -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
                 android:textColor="@color/text_dark"
                 android:textSize="22sp"
                 android:fontFamily="@font/manrope_extrabold" />
-                
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -53,21 +53,23 @@
                 android:textColor="#9E9E9E"
                 android:textSize="13sp"
                 android:fontFamily="@font/manrope_medium" />
+
         </LinearLayout>
-            
+
     </LinearLayout>
 
+    <!-- Content -->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!-- Loading Animation -->
+        <!-- Loading -->
         <ProgressBar
             android:id="@+id/progressBarRiwayat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:visibility="visible"/>
+            android:visibility="visible" />
 
         <!-- Empty State -->
         <LinearLayout
@@ -78,13 +80,13 @@
             android:orientation="vertical"
             android:gravity="center"
             android:visibility="gone">
-            
+
             <ImageView
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:src="@drawable/ic_history"
-                app:tint="#E0E0E0"/>
-                
+                app:tint="#E0E0E0" />
+
             <TextView
                 android:id="@+id/tvEmptyState"
                 android:layout_width="wrap_content"
@@ -93,7 +95,8 @@
                 android:text="Belum ada riwayat"
                 android:textColor="#9E9E9E"
                 android:textSize="16sp"
-                android:fontFamily="@font/manrope_semibold"/>
+                android:fontFamily="@font/manrope_medium" />
+
         </LinearLayout>
 
         <!-- RecyclerView -->
@@ -103,8 +106,9 @@
             android:layout_height="match_parent"
             android:clipToPadding="false"
             android:paddingHorizontal="16dp"
-            android:paddingTop="8dp"
             android:paddingBottom="100dp"
-            tools:listitem="@layout/item_history"/>
+            tools:listitem="@layout/item_history" />
+
     </FrameLayout>
+
 </LinearLayout>

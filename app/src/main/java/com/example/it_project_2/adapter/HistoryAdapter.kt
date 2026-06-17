@@ -19,7 +19,9 @@ class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_history, parent, false)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_history, parent, false)
+
         return HistoryViewHolder(view)
     }
 
@@ -30,23 +32,17 @@ class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() 
     override fun getItemCount(): Int = historyList.size
 
     class HistoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val tvWaktu: TextView = itemView.findViewById(R.id.tvWaktu)
-        private val tvSuhuRiwayat: TextView = itemView.findViewById(R.id.tvSuhuRiwayat)
-        private val tvKelembapanRiwayat: TextView = itemView.findViewById(R.id.tvKelembapanRiwayat)
-        private val tvPompaRiwayat: TextView = itemView.findViewById(R.id.tvPompaRiwayat)
 
-        fun bind(riwayat: RiwayatModel) {
-            tvWaktu.text = riwayat.waktu
-            tvSuhuRiwayat.text = "${riwayat.suhu}°C"
-            tvKelembapanRiwayat.text = "${riwayat.kelembapan_tanah}%"
-            
-            if (riwayat.status_pompa) {
-                tvPompaRiwayat.text = "AKTIF"
-                tvPompaRiwayat.setBackgroundResource(R.drawable.bg_badge_green)
-            } else {
-                tvPompaRiwayat.text = "MATI"
-                tvPompaRiwayat.setBackgroundResource(R.drawable.bg_badge_red)
-            }
+        private val tvTanggal: TextView = itemView.findViewById(R.id.tvTanggal)
+        private val tvStatus: TextView = itemView.findViewById(R.id.tvStatus)
+        private val tvSuhu: TextView = itemView.findViewById(R.id.tvSuhu)
+        private val tvKelembapan: TextView = itemView.findViewById(R.id.tvKelembapan)
+
+        fun bind(item: RiwayatModel) {
+            tvTanggal.text = item.waktu
+            tvStatus.text = item.statusPompa
+            tvSuhu.text = "${item.suhu}°C"
+            tvKelembapan.text = "${item.kelembapan}%"
         }
     }
 }

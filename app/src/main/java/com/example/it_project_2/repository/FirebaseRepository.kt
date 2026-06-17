@@ -53,7 +53,7 @@ class FirebaseRepository {
     }
 
     // Pengaturan Data
-    fun getPengaturanData(): LiveData<PengaturanModel> {
+    fun getProjectPengaturanData(): LiveData<PengaturanModel> {
         val data = MutableLiveData<PengaturanModel>()
         pengaturanRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -64,6 +64,10 @@ class FirebaseRepository {
             override fun onCancelled(error: DatabaseError) {}
         })
         return data
+    }
+
+    fun getPengaturanData(): LiveData<PengaturanModel> {
+        return getProjectPengaturanData()
     }
 
     fun updatePengaturan(pengaturan: PengaturanModel): com.google.android.gms.tasks.Task<Void> {
@@ -87,17 +91,15 @@ class FirebaseRepository {
     // Riwayat Data
     fun getRiwayatData(): LiveData<List<RiwayatModel>> {
         val dataList = MutableLiveData<List<RiwayatModel>>()
-        riwayatRef.orderByKey().limitToLast(50).addValueEventListener(object : ValueEventListener {
+        riwayatRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val list = mutableListOf<RiwayatModel>()
                 for (child in snapshot.children) {
                     val riwayat = child.getValue(RiwayatModel::class.java)
                     riwayat?.let {
-                        it.id = child.key ?: ""
                         list.add(it)
                     }
                 }
-                list.reverse() // Newest first
                 dataList.postValue(list)
             }
             override fun onCancelled(error: DatabaseError) {}
