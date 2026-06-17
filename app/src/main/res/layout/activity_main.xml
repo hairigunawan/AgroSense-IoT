@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F6F8FB">
+
+    <!-- ================= CONTENT ================= -->
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- ================= NAVBAR ================= -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/bottom_nav_card"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/navbar_height"
+        app:cardBackgroundColor="@android:color/white"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.BottomNav.TopRounded"
+        app:cardElevation="8dp"
+        app:strokeWidth="1dp"
+        app:strokeColor="#F0F0F0"
+        app:cardUseCompatPadding="false">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            app:itemActiveIndicatorStyle="@style/NavIndicator"
+            app:itemIconSize="24dp"
+            app:itemIconTint="@color/nav_item_color"
+            app:itemRippleColor="@android:color/transparent"
+                app:itemTextAppearanceActive="@style/NavTextActive"
+                app:itemTextColor="@color/nav_item_color"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/bottom_nav_menu" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>
