@@ -1,0 +1,839 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipeRefreshHome"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_neutral">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="28dp"
+            android:paddingBottom="20dp">
+
+            <!-- ===== HEADER ===== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="20dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="24 Oktober 2026"
+                        android:textColor="@color/text_light"
+                        android:textSize="15sp"
+                        android:fontFamily="@font/manrope_medium"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp">
+
+                        <TextView
+                            android:id="@+id/tvGreeting"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Selamat Pagi, "
+                            android:textColor="@color/text_dark"
+                            android:textSize="25sp"
+                            android:fontFamily="@font/manrope_bold"/>
+
+                        <TextView
+                            android:id="@+id/tvUser"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Hairi"
+                            android:textColor="@color/green_primary"
+                            android:textSize="25sp"
+                            android:fontFamily="@font/manrope_extrabold"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_notification"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="0dp">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="13dp"
+                        android:src="@drawable/notification"
+                        app:tint="#334155"/>
+                    <TextView
+                        android:id="@+id/badge_notification"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_gravity="top|end"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/bg_badge_red"
+                        android:textColor="@android:color/white"
+                        android:textSize="10sp"
+                        android:fontFamily="@font/manrope_bold"
+                        android:gravity="center"
+                        android:text="3"
+                        android:includeFontPadding="false"
+                        android:visibility="visible"/>
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+            <!-- ===== WEATHER CARD ===== -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardWeather"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                app:cardCornerRadius="28dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="#0F172A"
+                app:strokeWidth="0dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/ivWeatherBg"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:scaleType="centerCrop"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                    <LinearLayout
+                        android:id="@+id/layoutWeatherBg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="top"
+                        android:padding="20dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
+
+                        <!-- Pills row -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/bg_glass_card"
+                                android:backgroundTint="#1AFFFFFF"
+                                android:paddingHorizontal="10dp"
+                                android:paddingVertical="5dp"
+                                android:gravity="center_vertical">
+                                <ImageView
+                                    android:layout_width="12dp"
+                                    android:layout_height="12dp"
+                                    android:src="@drawable/ic_location"
+                                    app:tint="#FFFFFF"/>
+                                <TextView
+                                    android:id="@+id/tvLocation"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="5dp"
+                                    android:text="Ujung Batu"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="12sp"
+                                    android:fontFamily="@font/manrope_semibold"/>
+                            </LinearLayout>
+
+                            <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1"/>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/bg_glass_card"
+                                android:backgroundTint="#1AFFFFFF"
+                                android:paddingHorizontal="10dp"
+                                android:paddingVertical="5dp"
+                                android:gravity="center_vertical">
+                                <View
+                                    android:layout_width="7dp"
+                                    android:layout_height="7dp"
+                                    android:background="@drawable/dot_green"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="5dp"
+                                    android:text="Live"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="12sp"
+                                    android:fontFamily="@font/manrope_semibold"/>
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <!-- Temp + Icon row -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="bottom"
+                            android:layout_marginTop="8dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvWeatherTemp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="30°C"
+                                android:textColor="#FFFFFF"
+                                android:textSize="52sp"
+                                android:fontFamily="@font/manrope_extrabold"
+                                android:lineSpacingMultiplier="0.9"/>
+
+                            <TextView
+                                android:id="@+id/tvHomeWeatherCondition"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Cerah Berawan"
+                                android:textColor="@color/text_light"
+                                android:textSize="14sp"
+                                android:fontFamily="@font/manrope_medium"
+                                android:layout_marginBottom="16dp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/ivWeatherIcon3D"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginBottom="12dp"
+                            android:src="@drawable/cerah"/>
+
+                    </LinearLayout>
+
+                    <!-- Stats row -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="5dp"
+                            android:background="@drawable/bg_glass_card"
+                            android:backgroundTint="#1AFFFFFF"
+                            android:padding="12dp"
+                            android:gravity="center_vertical">
+
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:background="@drawable/bg_circle"
+                                android:backgroundTint="#1A3B82F6"
+                                android:padding="7dp"
+                                android:src="@drawable/ic_water_drop"
+                                app:tint="#60A5FA"/>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_marginStart="10dp">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Kelembapan"
+                                    android:textColor="@color/text_light"
+                                    android:textSize="10sp"
+                                    android:fontFamily="@font/manrope_medium"/>
+                                <TextView
+                                    android:id="@+id/tvWeatherHumidity"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="45%"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="15sp"
+                                    android:fontFamily="@font/manrope_bold"/>
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="5dp"
+                            android:background="@drawable/bg_glass_card"
+                            android:backgroundTint="#1AFFFFFF"
+                            android:padding="12dp"
+                            android:gravity="center_vertical">
+
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:background="@drawable/bg_circle"
+                                android:backgroundTint="#1A10B981"
+                                android:padding="7dp"
+                                android:src="@drawable/ic_wind"
+                                app:tint="#4ADE80"/>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_marginStart="10dp">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Angin"
+                                    android:textColor="@color/text_light"
+                                    android:textSize="10sp"
+                                    android:fontFamily="@font/manrope_medium"/>
+                                <TextView
+                                    android:id="@+id/tvWindSpeed"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="12 km/j"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="15sp"
+                                    android:fontFamily="@font/manrope_bold"/>
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- ===== STATUS TANAH TITLE ===== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="28dp"
+                android:layout_marginBottom="12dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="DATA SENSOR"
+                    android:textColor="@color/text_dark"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/manrope_bold"/>
+
+            </LinearLayout>
+
+            <!-- ===== SENSOR GRID: Suhu + Air Tanah ===== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <!-- SUHU TANAH -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="6dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="18dp"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="#E2E8F0">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="14dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <ImageView
+                                android:id="@+id/iv_suhu_icon"
+                                android:layout_width="36dp"
+                                android:layout_height="36dp"
+                                android:background="@drawable/bg_circle"
+                                android:backgroundTint="#ECFDF5"
+                                android:padding="9dp"
+                                android:src="@drawable/ic_thermostat"
+                                app:tint="#10B981"/>
+
+                            <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1"/>
+
+                            <TextView
+                                android:id="@+id/tvSuhuStatus"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/bg_chip_light_green"
+                                android:paddingHorizontal="8dp"
+                                android:paddingVertical="3dp"
+                                android:text="Normal"
+                                android:textColor="#065F46"
+                                android:textSize="10sp"
+                                android:fontFamily="@font/manrope_bold"/>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Suhu Udara"
+                            android:textColor="@color/text_light"
+                            android:textSize="11sp"
+                            android:fontFamily="@font/manrope_medium"/>
+
+                        <View
+                            android:id="@+id/shimmerSuhu"
+                            android:layout_width="60dp"
+                            android:layout_height="30dp"
+                            android:layout_marginTop="1dp"
+                            android:background="@drawable/bg_shimmer_drawable"
+                            android:visibility="visible"/>
+
+                        <TextView
+                            android:id="@+id/suhuValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="1dp"
+                            android:text="32°C"
+                            android:textColor="@color/text_dark"
+                            android:textSize="24sp"
+                            android:fontFamily="@font/manrope_extrabold"
+                            android:visibility="gone"/>
+
+                        <TextView
+                            android:id="@+id/tv_suhu_threshold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Max: 35°"
+                            android:textColor="#10B981"
+                            android:textSize="10sp"
+                            android:fontFamily="@font/manrope_medium"/>
+
+                        <com.github.mikephil.charting.charts.LineChart
+                            android:id="@+id/chart_suhu"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_marginTop="8dp"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="2dp"
+                            android:weightSum="3">
+                            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="08:00" android:gravity="start" android:textSize="9sp" android:textColor="@color/text_light"/>
+                            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="12:00" android:gravity="center" android:textSize="9sp" android:textColor="@color/text_light"/>
+                            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="16:00" android:gravity="end" android:textSize="9sp" android:textColor="@color/text_light"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- AIR TANAH -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="6dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="18dp"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="#E2E8F0">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="14dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <ImageView
+                                android:id="@+id/iv_moisture_icon"
+                                android:layout_width="36dp"
+                                android:layout_height="36dp"
+                                android:background="@drawable/bg_circle"
+                                android:backgroundTint="#EFF6FF"
+                                android:padding="9dp"
+                                android:src="@drawable/ic_water_drop"
+                                app:tint="#3B82F6"/>
+
+                            <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1"/>
+
+                            <TextView
+                                android:id="@+id/tvMoistureStatus"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/bg_chip_light_blue"
+                                android:paddingHorizontal="8dp"
+                                android:paddingVertical="3dp"
+                                android:text="Normal"
+                                android:textColor="#1E40AF"
+                                android:textSize="10sp"
+                                android:fontFamily="@font/manrope_bold"/>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Kelembapan Tanah"
+                            android:textColor="@color/text_light"
+                            android:textSize="11sp"
+                            android:fontFamily="@font/manrope_medium"/>
+
+                        <TextView
+                            android:id="@+id/kelembapanTanahValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="1dp"
+                            android:text="60%"
+                            android:textColor="@color/text_dark"
+                            android:textSize="24sp"
+                            android:fontFamily="@font/manrope_extrabold"
+                            android:visibility="gone"/>
+
+                        <View
+                            android:id="@+id/shimmerTanah"
+                            android:layout_width="60dp"
+                            android:layout_height="30dp"
+                            android:layout_marginTop="1dp"
+                            android:background="@drawable/bg_shimmer_drawable"
+                            android:visibility="visible"/>
+
+                        <TextView
+                            android:id="@+id/tv_kelembapan_tanah_threshold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Max: 70%"
+                            android:textColor="#3B82F6"
+                            android:textSize="10sp"
+                            android:fontFamily="@font/manrope_medium"/>
+
+                        <com.github.mikephil.charting.charts.LineChart
+                            android:id="@+id/chart_kelembapan_tanah"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_marginTop="8dp"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="2dp"
+                            android:weightSum="3">
+                            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="08:00" android:gravity="start" android:textSize="9sp" android:textColor="@color/text_light"/>
+                            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="12:00" android:gravity="center" android:textSize="9sp" android:textColor="@color/text_light"/>
+                            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="16:00" android:gravity="end" android:textSize="9sp" android:textColor="@color/text_light"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+            <!-- ===== KELEMBAPAN UDARA ===== -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="#E2E8F0">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp">
+
+                    <!-- Ikon Awan -->
+                    <ImageView
+                        android:id="@+id/iv_air_humidity_icon"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bg_circle"
+                        android:backgroundTint="#EFF6FF"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_cloud"
+                        app:tint="#3B82F6"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                    <!-- Label -->
+                    <TextView
+                        android:id="@+id/tvTitleUdara"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="Kelembapan Udara"
+                        android:textColor="@color/text_light"
+                        android:textSize="13sp"
+                        android:fontFamily="@font/manrope_medium"
+                        app:layout_constraintTop_toBottomOf="@id/iv_air_humidity_icon"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                    <!-- Subtitle/Deskripsi -->
+                    <TextView
+                        android:id="@+id/tvSubtitleUdara"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="16dp"
+                        android:text="Kondisi kelembapan udara saat ini."
+                        android:textColor="@color/text_light"
+                        android:textSize="11sp"
+                        android:fontFamily="@font/manrope_medium"
+                        app:layout_constraintTop_toBottomOf="@id/tvTitleUdara"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/flProgressContainer"/>
+
+                    <!-- Circular Gauge / Ring Grafik -->
+                    <FrameLayout
+                        android:id="@+id/flProgressContainer"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
+
+                        <View
+                            android:id="@+id/shimmerUdara"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/bg_shimmer_drawable"
+                            android:visibility="visible"/>
+
+                        <!-- Progress Bar Melingkar -->
+                        <ProgressBar
+                            android:id="@+id/progress_humidity"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:indeterminate="false"
+                            android:max="100"
+                            android:progress="45"
+                            android:progressDrawable="@drawable/bg_humidity_progress"
+                            android:visibility="gone"/>
+
+                        <!-- Nilai Persentase di Tengah Lingkaran -->
+                        <TextView
+                            android:id="@+id/kelembapanUdaraValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="45%"
+                            android:textColor="@color/text_dark"
+                            android:textSize="22sp"
+                            android:fontFamily="@font/manrope_extrabold"
+                            android:visibility="gone"/>
+                    </FrameLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- ===== KONTROL PERANGKAT ===== -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:layout_marginBottom="8dp"
+                android:text="KONTROL PENYIRAMAN"
+                android:textColor="@color/text_dark"
+                android:textSize="14sp"
+                android:fontFamily="@font/manrope_bold"/>
+
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="#E2E8F0">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <!-- Mode row -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="64dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="2dp">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/bg_circle"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_settings"
+                            android:contentDescription="Ikon mode operasi"
+                            app:tint="#6366F1"/>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="14dp"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Mode Operasi"
+                                android:textColor="@color/text_dark"
+                                android:textSize="14sp"
+                                android:fontFamily="@font/manrope_bold"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="Diatur melalui menu Sensor"
+                                android:textColor="@color/text_light"
+                                android:textSize="11sp"
+                                android:fontFamily="@font/manrope_medium"/>
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/tvModeStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_chip_green_soft"
+                            android:fontFamily="@font/manrope_bold"
+                            android:gravity="center"
+                            android:minWidth="82dp"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="7dp"
+                            android:text="Otomatis"
+                            android:textColor="@color/green_kangkung"
+                            android:textSize="11sp" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/bg_neutral"/>
+
+                    <!-- Pompa row -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="76dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="2dp">
+
+                        <ImageView
+                            android:id="@+id/ivPumpIcon"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/bg_circle"
+                            android:backgroundTint="#ECFDF5FF"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_water_drop"
+                            android:contentDescription="Ikon pompa air"
+                            app:tint="#10B981"/>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="14dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Saklar Pompa"
+                                android:textColor="@color/text_dark"
+                                android:textSize="15sp"
+                                android:fontFamily="@font/manrope_bold"/>
+
+                            <androidx.compose.ui.platform.ComposeView
+                                android:id="@+id/composePumpStatus"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+                        </LinearLayout>
+
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/switchPompa"
+                            android:layout_width="wrap_content"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="8dp"
+                            android:checked="false"
+                            android:contentDescription="Saklar pompa air"
+                            app:useMaterialThemeColors="true"
+                            app:trackTint="@color/switch_track_selector"
+                            app:thumbTint="@color/white" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

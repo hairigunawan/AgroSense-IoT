@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Style: Modern Soft UI -->
+    <color name="green_primary">#32C766</color> <!-- Hijau sesuai spek -->
+    <color name="blue_primary">#4A90E2</color>  <!-- Biru lembut -->
+    <color name="bg_neutral">#F8F9FA</color>    <!-- Background netral -->
+    <color name="green_primary_soft">#1A16A34A</color>
+    <color name="nav_icon_active">#16A34A</color>
+    <color name="nav_icon_inactive">#94A3B8</color>
+
+    <color name="text_dark">#11141B</color>
+    <color name="text_light">#787878</color>
+
+    <!-- Aliases for layouts -->
+    <color name="green_button">#2E7D32</color>
+    <color name="gray_text">#757575</color>
+    <color name="bg_light">#F5F5F5</color>
+    
+    <!-- Navigasi & UI Modern -->
+    <color name="nav_highlight">#E3F2FD</color>
+    <color name="green_primary_transparent">#262E7D32</color> <!-- 15% opacity Green -->
+    <color name="nav_inactive">#9E9E9E</color>
+
+    <!-- Modern Navbar Colors -->
+    <color name="nav_glass_bg">#F2FFFFFF</color>
+    <color name="nav_glass_border">#1AFFFFFF</color>
+    <color name="nav_indicator_bg">#1A32C766</color>
+    <color name="nav_active_text">#1B5E20</color>
+
+    <!-- Weather UI Colors (Legacy) -->
+    <color name="weather_bg">#4A90E2</color>
+    <color name="transparent_white">#33FFFFFF</color>
+    <color name="transparent_white_heavy">#66FFFFFF</color>
+
+    <!-- Weather Modern UI Colors -->
+    <color name="weather_bg_start">#0B1B32</color>
+    <color name="weather_bg_end">#1E3C72</color>
+    <color name="weather_bg_day_start">#11998E</color>
+    <color name="weather_bg_day_end">#38EF7D</color>
+    <color name="glass_white">#1AFFFFFF</color>
+    <color name="glass_white_heavy">#33FFFFFF</color>
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#B3FFFFFF</color>
+    <color name="accent_blue">#00D2FF</color>
+    <color name="indicator_white">#FFFFFF</color>
+    <color name="bg_profile">#E8F5E9</color>
+    <color name="accent_green">#C6FF00</color>
+    <color name="text_grey">#9E9E9E</color>
+    <color name="text_muted">#666666</color>
+    <color name="bg_screen">#F7FBF8</color>
+    <color name="green_kangkung">#2E7D32</color>
+    <color name="green_light">#E8F5E9</color>
+    <color name="gray_background">#F5F5F5</color>
+    <color name="green_soft_bg">#B0FFDE</color>
+    <color name="blue_soft_bg">#A4DAFF</color>
+</resources>

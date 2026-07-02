@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Corners -->
+    <dimen name="card_corner_radius">24dp</dimen>
+    <dimen name="card_corner_radius_small">18dp</dimen>
+    <dimen name="button_corner_radius">25dp</dimen>
+
+    <!-- Spacing / Margins -->
+    <dimen name="spacing_tiny">4dp</dimen>
+    <dimen name="spacing_small">8dp</dimen>
+    <dimen name="spacing_medium">16dp</dimen>
+    <dimen name="spacing_large">24dp</dimen>
+    <dimen name="spacing_xlarge">20dp</dimen>
+    <dimen name="screen_padding_horizontal">22dp</dimen>
+    <dimen name="screen_padding_top">28dp</dimen>
+
+    <!-- Text Sizes -->
+    <dimen name="text_size_caption">12sp</dimen>
+    <dimen name="text_size_small">13sp</dimen>
+    <dimen name="text_size_body">14sp</dimen>
+    <dimen name="text_size_body_medium">15sp</dimen>
+    <dimen name="text_size_medium">16sp</dimen>
+    <dimen name="text_size_header">18sp</dimen>
+    <dimen name="text_size_title">26sp</dimen>
+    <dimen name="text_size_weather">42sp</dimen>
+    <dimen name="text_size_value">28sp</dimen>
+
+    <!-- Component Specific -->
+    <dimen name="navbar_height">65dp</dimen>
+    <dimen name="header_icon_size">52dp</dimen>
+    <dimen name="weather_card_height">188dp</dimen>
+    <dimen name="summary_card_height">150dp</dimen>
+    <dimen name="icon_circle_size">48dp</dimen>
+    <dimen name="icon_circle_padding">12dp</dimen>
+</resources>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Backgrounds -->
+    <color name="white">#121212</color> <!-- Re-map absolute white to dark background for generic components -->
+    <color name="bg_neutral">#000000</color> <!-- Main background -->
+    <color name="bg_light">#1E1E1E</color>
+    <color name="gray_background">#1E1E1E</color>
+    <color name="bg_screen">#0A0A0A</color>
+
+    <!-- Texts -->
+    <color name="text_dark">#F0F0F0</color> <!-- Text that is normally dark should be light -->
+    <color name="text_light">#A0A0A0</color>
+    <color name="gray_text">#AAAAAA</color>
+    <color name="text_grey">#AAAAAA</color>
+    <color name="text_muted">#888888</color>
+
+    <!-- Components -->
+    <color name="nav_inactive">#888888</color>
+    <color name="bg_profile">#2C2C2C</color>
+    <color name="green_light">#1B3B21</color>
+
+    <!-- Modern Navbar (Dark Mode) -->
+    <color name="nav_glass_bg">#F2141414</color>
+    <color name="nav_glass_border">#1AFFFFFF</color>
+    <color name="nav_indicator_bg">#3032C766</color>
+    <color name="nav_active_text">#4CAF50</color>
+</resources>

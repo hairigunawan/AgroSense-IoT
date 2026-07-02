@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="NavIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:width">48dp</item>
+        <item name="android:height">30dp</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.NavIndicator</item>
+    </style>
+
+    <style name="ShapeAppearance.NavIndicator" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    <style name="NavTextActive" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:textSize">11sp</item>
+        <item name="android:fontFamily">@font/manrope_bold</item>
+    </style>
+
+    <style name="NavTextInactive" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:textSize">11sp</item>
+        <item name="android:fontFamily">@font/manrope_medium</item>
+    </style>
+
+    <style name="ShapeAppearance.Fab.Squircle" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">20dp</item>
+    </style>
+
+    <style name="Widget.App.Button.Primary" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="cornerRadius">16dp</item>
+        <item name="android:fontFamily">@font/manrope_bold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="backgroundTint">@color/green_primary</item>
+        <item name="elevation">0dp</item>
+    </style>
+
+    <style name="Widget.App.Button.Outline" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="cornerRadius">16dp</item>
+        <item name="android:fontFamily">@font/manrope_semibold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="strokeColor">#E2E8F0</item>
+        <item name="elevation">0dp</item>
+    </style>
+</resources>
